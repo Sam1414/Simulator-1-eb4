@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <title>Document</title>
+  <script src="plotly-latest.min.js"></script>
+  <style media="screen">
+    .bg-color {
+      background-color: #faf3dd;
+    }
+    .container-fluid {
+      /* font-size: 16px; */
+      /* font-size: 1.5vw; */
+      font-size: clamp(10px, 1.5vw, 14px);
+    }
+    /* .svg-container {
+      object-fit: inherit;
+    } */
+    /* .blue {
+      text-decoration-color: blue;
+      text-emphasis-color: blue;
+    } */
+    /* #workspace>tbody>tr>:nth-child(3){text-decoration-color:blue;} */
+    /* #workspace>thead>tr>:nth-child(3){color: black;} */
+    /* #workspace>:nth-child(1)>:nth-child(3){text-decoration-color: blue;} */
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="jumbotron py-3">
+      <h1 class="display-4">Wave Generation Lab</h1>
+      <p class="lead">This is a simple wave generation simulator.</p>
+      <hr class="my-3">
+      <div class="flex">
+          <h3><p class="font-weight-light font-italic">Choose your wave to start the Experiment: </p></h3>
+          <div class="">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="validatedInputGroupSelect"  style="background-color: #e0e0e0;">Waves</label>
+              </div>
+              <select class="custom-select" id="validatedInputGroupSelect" required>
+                <option value="">Select a Wave...</option>
+                <option value="sine">Sine</option>
+                <option value="cosine">Cosine</option>
+                <option value="impulse">Unit Impulse</option>
+                <option value="step">Unit Step</option>
+                <option value="ramp">Unit Ramp</option>
+                <option value="exp">Exponential</option>
+              </select>
+            </div>
+            <div class="invalid-feedback">
+              Example invalid input group feedback
+            </div>
+          </div>
+      </div>
+    </div>
+    <div id="row1" class="row my-2">
+      <div class="col-sm-5 my-2">
+        <div class="card border-info">
+          <div class="card-header bg-secondary text-white">Command Window</div>
+          <div class="card-body bg-light">
+            <div id="input_div" class="bg-color my-2 py-2 justify-content-around input-group">
+              <label id="input_value" for="formControlRange" class="mt-2">Enter Your Input: <span id="value"></span></label>
+              <!-- <script type="text/javascript">
+                var val = document.getElementById('value');
+                val.innerHTML = slider.value;
+              </script> -->
+              <input id="user_input" class="form-control-range w-50" type="range" min="0" max="100"/>
+              <button type="button" id="input_button" class="btn btn-outline-info">Ok</button>
+            </div>
+            <div class="table-responsive">
+              <table id="command" class="table table-borderless table-sm">
+                <colgroup><col style="width: 1px; background-color: #C0C0C0;"></col></colgroup>
+                <!-- <tbody>
+                </tbody> -->
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md my-2">
+        <div class="card border-info">
+          <div class="card-header bg-secondary text-white">Code Window</div>
+          <div class="card-body bg-light">
+            <div class="table-responsive">
+              <table id="code" class="table table-sm table-hover">
+                <colgroup><col style="width: 1px; background-color: #C0C0C0;"></col></colgroup>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td><samp># Unit impulse</samp></td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td><samp>t = [-1: 0.005: 1] * 100;</samp></td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td><samp>L = length(t);</samp></td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td><samp>delay = input('Enter the delay if any (in msec): ');</samp></td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td><samp>delay_in_sample = delay / 0.1;</samp></td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td><samp>impulse = [zeros(1, (L-1) / 2 + delay_in_sample) 1 zeros(1, (L - 1) / 2 - delay_in_sample)];</samp></td>
+                  </tr>
+                  <tr>
+                    <td>7</td>
+                    <td><samp>plot(t, impulse);</samp></td>
+                  </tr>
+                  <tr>
+                    <td>8</td>
+                    <td><samp>xlabel('Time (msec)');</samp></td>
+                  </tr>
+                  <tr>
+                    <td>9</td>
+                    <td><samp>ylabel('Amplitude');</samp></td>
+                  </tr>
+                  <tr>
+                    <td>10</td>
+                    <td><samp>title('Unit Impulse Function');</samp></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card-footer bg-transparent border-success">
+              Click Here to Start Code Execution:
+            <button id="start" type="button" class="btn btn-outline-info ml-2">Start</button>
+            <button id="reset" type="button" class="btn btn-outline-info ml-2">Reset</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="row2" class="row my-2 d-flex">
+      <div class="col-sm-5  my-2">
+        <div class="card border-info">
+          <div class="card-header bg-secondary text-white">Workspace</div>
+          <div class="card-body bg-light">
+            <div class="table-responsive">
+              <table id="workspace" class="table table-sm table-borderless">
+                <!-- <colgroup><col style="width: 1px; background-color: #C0C0C0;"></col></colgroup> -->
+                <thead class="thead-light">
+                  <tr>
+                    <th style="width: 1px;"></th>
+                    <th>Name</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- <colgroup>
+                    <col></col>
+                    <col></col>
+                    <col></col>
+                  </colgroup> -->
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md  my-2">
+        <div class="card border-info">
+          <div class="card-header bg-secondary text-white">Plot</div>
+          <div class="card-body bg-light">
+            <div id="plot-container" class="card border-dark w-75" style="width: 85%!important; box-sizing: content-box; overflow: scroll;"></div>
+            <!-- <div id="pt-container" style="box-sizing: content-box; overflow: hidden;"></div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+<script src="Impulse.js">
+
+</script>
+<script src="code.js"></script>
+</body>
+
+</html>

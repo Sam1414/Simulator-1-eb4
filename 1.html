@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <title>Chart 1</title>
+        <script src="graph.js"></script>
+        <script src="plotly-latest.min.js"></script>
+    </head>
+    <body>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+        <div>
+            <h1>Chart</h1>
+            <div class="chart-container" style="float: left; height:40vh; width:40vw">
+                <canvas id="myChart" width="400" height="400" style="border: 1px solid black"></canvas>
+                <script src="graph_script.js"></script>
+            </div>
+            <div id="myDiv" class="chart-container-2" style="float: left; height:400px; width:500px">
+                <!-- <canvas id="myPlot" width="400" height="400" style="border: 1px solid black"></canvas> -->
+            </div>
+            <script src="plot.js"></script>
+            <!--  <div class="chart-container-2" style="float: left; position: relative; height:40vh; width:40vw">
+                <canvas id="myChart2" width="400" height="400" style="border: 1px solid black"></canvas>
+            </div>   -->
+            <!-- <div id="graph" style="float: left; height:40vh; width:40vw">
+                <canvas width="800px" height="565.6854249492379px" id="graph" ></canvas>
+            </div>
+            <script>
+                var graph = new Graph({
+                    appendTo : "graph",
+                    canvasWidth : 800,
+                    canvasHeight : 800/Math.sqrt(2),
+                    title : "Number of skipped lectures by months",
+                    xAxisTitle : "Months",
+                    yAxisTitle : "Skipped Lectures",
+                    colorList : ["#00F"],
+                    barWidth: 0.8,
+                    barPosition: "center",
+                    xAxisNumSteps:12,
+                    yAxisNumSteps: 10,
+                    yGridNumLines: 10,
+                    drawYAxis : 1,
+                    drawXAxis : 1
+                });
+                
+                var y, labels;
+                
+                y = [3,5,4,1,7,0,0,0,6,8,3,10];
+                labels = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+                
+                graph.bars(y, labels, [0,10]);
+            </script> -->
+        </div>
+    </body>
+</html>
