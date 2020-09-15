@@ -1,7 +1,7 @@
-var delay;
+var t1, t2;
 
-function writeImpulseCode() {
-    console.log('writing impulse code');
+function writeRampCode() {
+    console.log('writing ramp code');
     var row, sno, line;
 
     var code_table = document.createElement('table');
@@ -24,42 +24,43 @@ function writeImpulseCode() {
         sno.innerHTML = '' + i;
         switch (i) {
             case 1:
-                line.innerHTML = '<samp># Unit impulse</samp>';
+                line.innerHTML = '<samp># Unit Ramp</samp>';
                 break;
             case 2:
-                line.innerHTML = '<samp>t = [-1: 0.005: 1] * 100;</samp>';
+                line.innerHTML = '<samp> disp(\'Enter the time range for generating ramp function below:\')</samp>';
                 break;
             case 3:
-                line.innerHTML = '<samp>L = length(t);</samp>';
+                line.innerHTML = '<samp>t1 = input(\'Lower limit (in Sec) = \');</samp>';
                 break;
             case 4:
-                line.innerHTML = '<samp>delay = input(\'Enter the delay if any(in msec): \');</samp>';
+                line.innerHTML = '<samp>t2 = input(\'Upper limit (in Sec) = \');</samp>';
                 break;
             case 5:
-                line.innerHTML = '<samp>delay_in_sample = delay / 0.1;</samp>';
+                line.innerHTML = '<samp>t = t1 : t2;</samp>';
                 break;
             case 6:
-                line.innerHTML = '<samp>impulse = [zeros(1, (L-1) / 2 + delay_in_sample) 1 zeros(1, (L - 1) / 2 - delay_in_sample)];</samp>';
+                line.innerHTML = '<samp>x = t.*[t >= 0];</samp>';
                 break;
             case 7:
-                line.innerHTML = '<samp>plot(t, impulse);</samp>';
+                line.innerHTML = '<samp>plot(t,x);</samp>';
                 break;
             case 8:
-                line.innerHTML = '<samp>xlabel(\'Time(msec)\');</samp>';
+                line.innerHTML = '<samp>title(\'Unit Ramp Function\')</samp>';
                 break;
             case 9:
-                line.innerHTML = '<samp>ylabel(\'Amplitude\');</samp>';
+                line.innerHTML = '<samp>xlabel(\'Time(Sec)\');</samp>';
                 break;
             case 10:
-                line.innerHTML = '<samp>title(\'Unit Impulse Function\');</samp>';
+                line.innerHTML = '<samp>ylabel(\'Amplitude\'); </samp>';
                 break;
         }
     }
+
     code_div.appendChild(code_table);
     start.disabled = false;
 }
 
-function impulseCodeHighlight() {
+function rampCodeHighlight() {
     var code = document.getElementById('code');
     if (code_row_no === 0) {
         start.innerHTML = 'Next';
@@ -71,6 +72,15 @@ function impulseCodeHighlight() {
         code.rows[code_row_no].className += "table-warning";
         code_row_no++;
     }
+    else if (code_row_no === 6) {
+        start.innerHTML = 'End';
+        code.rows[code_row_no - 1].className = "";
+        code.rows[code_row_no++].className += "table-warning";
+        code.rows[code_row_no++].className += "table-warning";
+        code.rows[code_row_no++].className += "table-warning";
+        code.rows[code_row_no].className += "table-warning";
+        plotRamp();
+    }
     else if (code_row_no > 6) {
         code.rows[code_row_no--].className = "";
         code.rows[code_row_no--].className = "";
@@ -79,46 +89,31 @@ function impulseCodeHighlight() {
         start.disabled = true;
         reset.disabled = false;
     }
-    else if (code_row_no === 6) {
-        start.innerHTML = 'End';
-        code.rows[code_row_no - 1].className = "";
-        code.rows[code_row_no++].className += "table-warning";
-        code.rows[code_row_no++].className += "table-warning";
-        code.rows[code_row_no++].className += "table-warning";
-        code.rows[code_row_no].className += "table-warning";
-        plotImpulse();
-    }
 }
 
-function updateImpuseWork() {
+function updateRampWork() {
     var row, icon, name, value;
     switch (code_row_no) {
         case 1:
-            row = workspace.insertRow(-1);
-            icon = row.insertCell(0);
-            name = row.insertCell(1);
-            value = row.insertCell(2);
-            var img = document.createElement('img');
-            img.src = arr_img;
-            icon.appendChild(img);
-            name.innerHTML = 't';
-            value.innerHTML = '<div class="text-primary"><em>1x2001 double</em></div>';
+            var row, cursor, mesg;
+            row = command.insertRow(-1);
+            if (command_row_no > 0) {
+                command.rows[command_row_no - 1].cells[0].innerHTML = '';
+            }
+            cursor = row.insertCell(0);
+            mesg = row.insertCell(1);
+            cursor.innerHTML = '<em>f(x)</em>';
+            cursor.style = 'width: 1px;'
+            mesg.innerHTML = '>> Enter the time range for generating ramp function below: ';
+            command_row_no++;
             break;
         case 2:
-            row = workspace.insertRow(-1);
-            icon = row.insertCell(0);
-            name = row.insertCell(1);
-            value = row.insertCell(2);
-            icon.innerHTML = '<div></div>';
-            var img = document.createElement('img');
-            img.src = arr_img;
-            icon.appendChild(img);
-            name.innerHTML = 'L';
-            value.innerHTML = '<div class="text-primary"><em>2001</em></div>';
+            user_variable = 't1';
+            enableInput('>> Lower limit (in sec): ', -50, -5, 1, -20);
             break;
         case 3:
-            user_variable = 'delay';
-            enableInput('>> Enter the delay if any (in msec): ', -95, 95, 1, 0);
+            user_variable = 't2';
+            enableInput('>> Upper limit (in sec): ', 5, 50, 1, 20);
             break;
         case 4:
             row = workspace.insertRow(-1);
@@ -129,8 +124,9 @@ function updateImpuseWork() {
             var img = document.createElement('img');
             img.src = arr_img;
             icon.appendChild(img);
-            name.innerHTML = 'delay_in_sample';
-            value.innerHTML = '<div class="text-primary"><em>1000</em></div>';
+            name.innerHTML = 't';
+            var dim = Math.abs(parseInt(t1)) + Math.abs(parseInt(t2)) + 1;
+            value.innerHTML = '<div class="text-primary"><em>1x' + dim + ' double</em></div>';
             break;
         case 5:
             row = workspace.insertRow(-1);
@@ -141,19 +137,36 @@ function updateImpuseWork() {
             var img = document.createElement('img');
             img.src = arr_img;
             icon.appendChild(img);
-            name.innerHTML = 'impulse';
-            value.innerHTML = '<div class="text-primary"><em>1x20001 double</em></div>';
+            name.innerHTML = 'x';
+            var dim = Math.abs(parseInt(t1)) + Math.abs(parseInt(t2)) + 1;
+            value.innerHTML = '<div class="text-primary"><em>1x' + dim + ' double</em></div>';
             break;
     }
 }
 
-function userUpdateImpulseWork(user_variable, user_input, code_row_no) {
+function userUpdateRampWork(user_variable, user_input, code_row_no) {
     var row, icon, name, value;
-    console.log(user_variable);
-    console.log(user_input);
-    console.log(code_row_no);
-    delay = user_input;
-    if (code_row_no === 4) {
+
+    if (code_row_no - 1 === 2) {
+
+        t1 = user_input;
+
+        command.rows[command_row_no - 1].cells[0].style = 'width: 1px;';
+        command.rows[command_row_no - 1].cells[1].innerHTML += user_input;
+
+        row = workspace.insertRow(-1);
+        icon = row.insertCell(0);
+        name = row.insertCell(1);
+        value = row.insertCell(2);
+        var img = document.createElement('img');
+        img.src = arr_img;
+        icon.appendChild(img);
+        name.innerHTML = user_variable;
+        value.innerHTML = '<div class="text-primary"><em>' + user_input + '</em></div>';
+    }
+    else if (code_row_no - 1 === 3) {
+
+        t2 = user_input;
 
         command.rows[command_row_no - 1].cells[0].style = 'width: 1px;';
         command.rows[command_row_no - 1].cells[1].innerHTML += user_input;
@@ -170,38 +183,41 @@ function userUpdateImpulseWork(user_variable, user_input, code_row_no) {
     }
 }
 
+
 var isPlotted;
 var plot_container = document.getElementById('plot-container');
 
-function plotImpulse() {
-    console.log('called plot impulse');
+function plotRamp() {
+    console.log('called plot ramp');
 
     var lx = [];
     var ly = [];
 
-    for (let i = -100; i <= 100; i += 0.5) {
+    t1 = parseInt(t1);
+    t2 = parseInt(t2);
+    for (let i = t1; i <= t2; i += 1) {
         lx.push(i);
-        if (i === parseInt(delay)) {
-            console.log('pushed 1');
-            ly.push(1);
+        if (i <= 0) {
+            console.log('pushed 0');
+            ly.push(0);
         }
         else {
-            ly.push(0);
+            ly.push(i);
         }
     }
 
     var trace1 = {
         x: lx,
         y: ly,
-        type: 'line',
-        mode: 'lines',
-        name: 'Impulse'
+        type: 'line'
     };
 
+    var data = [trace1];
+
     var layout = {
-        title: 'Unit Impulse Function',
+        title: 'Unit Ramp Function',
         xaxis: {
-            title: 'Time (msec)'
+            title: 'Time (sec)'
         },
         yaxis: {
             title: 'Amplitude'
@@ -211,8 +227,6 @@ function plotImpulse() {
     var config = {
         responsive: true
     }
-
-    var data = [trace1];
 
     isPlotted = true;
     console.log('isPlotted', isPlotted);

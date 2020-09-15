@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -18,6 +17,11 @@
       /* font-size: 1.5vw; */
       font-size: clamp(10px, 1.5vw, 14px);
     }
+    /* body {
+     -moz-transform: scale(0.8, 0.8);
+     zoom: 0.8;
+     zoom: 80%;
+    } */
     /* .svg-container {
       object-fit: inherit;
     } */
@@ -34,7 +38,7 @@
 <body>
   <div class="container-fluid">
     <div class="jumbotron py-3">
-      <h1 class="display-4">Wave Generation Lab</h1>
+      <h1 class="display-4">Basic Signal Generation</h1>
       <p class="lead">This is a simple wave generation simulator.</p>
       <hr class="my-3">
       <div class="flex">
@@ -44,10 +48,10 @@
               <div class="input-group-prepend">
                 <label class="input-group-text" for="validatedInputGroupSelect"  style="background-color: #e0e0e0;">Waves</label>
               </div>
-              <select class="custom-select" id="validatedInputGroupSelect" required>
+              <select id="wave_selector" class="custom-select" required>
                 <option value="">Select a Wave...</option>
                 <option value="sine">Sine</option>
-                <option value="cosine">Cosine</option>
+                <option value="cos">Cosine</option>
                 <option value="impulse">Unit Impulse</option>
                 <option value="step">Unit Step</option>
                 <option value="ramp">Unit Ramp</option>
@@ -60,6 +64,7 @@
           </div>
       </div>
     </div>
+    <div id="selected_wave" class="page-header text-center text-black" style="background-color: #d6e0f0"><h1><p class="font-weight-light py-2">Wave Selected:</p></h1></div>
     <div id="row1" class="row my-2">
       <div class="col-sm-5 my-2">
         <div class="card border-info">
@@ -71,7 +76,7 @@
                 var val = document.getElementById('value');
                 val.innerHTML = slider.value;
               </script> -->
-              <input id="user_input" class="form-control-range w-50" type="range" min="0" max="100"/>
+              <input id="user_input" class="form-control-range w-50" type="range"/>
               <button type="button" id="input_button" class="btn btn-outline-info">Ok</button>
             </div>
             <div class="table-responsive">
@@ -88,52 +93,8 @@
         <div class="card border-info">
           <div class="card-header bg-secondary text-white">Code Window</div>
           <div class="card-body bg-light">
-            <div class="table-responsive">
-              <table id="code" class="table table-sm table-hover">
-                <colgroup><col style="width: 1px; background-color: #C0C0C0;"></col></colgroup>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td><samp># Unit impulse</samp></td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td><samp>t = [-1: 0.005: 1] * 100;</samp></td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td><samp>L = length(t);</samp></td>
-                  </tr>
-                  <tr>
-                    <td>4</td>
-                    <td><samp>delay = input('Enter the delay if any (in msec): ');</samp></td>
-                  </tr>
-                  <tr>
-                    <td>5</td>
-                    <td><samp>delay_in_sample = delay / 0.1;</samp></td>
-                  </tr>
-                  <tr>
-                    <td>6</td>
-                    <td><samp>impulse = [zeros(1, (L-1) / 2 + delay_in_sample) 1 zeros(1, (L - 1) / 2 - delay_in_sample)];</samp></td>
-                  </tr>
-                  <tr>
-                    <td>7</td>
-                    <td><samp>plot(t, impulse);</samp></td>
-                  </tr>
-                  <tr>
-                    <td>8</td>
-                    <td><samp>xlabel('Time (msec)');</samp></td>
-                  </tr>
-                  <tr>
-                    <td>9</td>
-                    <td><samp>ylabel('Amplitude');</samp></td>
-                  </tr>
-                  <tr>
-                    <td>10</td>
-                    <td><samp>title('Unit Impulse Function');</samp></td>
-                  </tr>
-                </tbody>
-              </table>
+            <div id="code-div" class="table-responsive">
+              <!-- <iframe id="code-frame" src='ImpulseCode.html'></iframe> -->
             </div>
           </div>
           <div class="card-footer bg-transparent border-success">
@@ -189,9 +150,12 @@
     </div>
 
   </div>
-<script src="Impulse.js">
-
-</script>
+<script src="Impulse.js"></script>
+<script src="ramp.js"></script>
+<script src="step.js"></script>
+<script src="sine.js"></script>
+<script src="cos.js"></script>
+<script src="exp.js"></script>
 <script src="code.js"></script>
 </body>
 

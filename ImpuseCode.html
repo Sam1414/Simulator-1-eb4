@@ -1,0 +1,50 @@
+{% comment %} <script src="code.js"></script> {% endcomment %}
+{% comment %} <script src="Impulse.js"></script> {% endcomment %}
+<table id="code" class="table table-sm table-hover">
+  <colgroup>
+    <col style="width: 1px; background-color: #C0C0C0;">
+    </col>
+  </colgroup>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td><samp># Unit impulse</samp></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><samp>t = [-1: 0.005: 1] * 100;</samp></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><samp>L = length(t);</samp></td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><samp>delay = input('Enter the delay if any (in msec): ');</samp></td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td><samp>delay_in_sample = delay / 0.1;</samp></td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td><samp>impulse = [zeros(1, (L-1) / 2 + delay_in_sample) 1 zeros(1, (L - 1) / 2 - delay_in_sample)];</samp></td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td><samp>plot(t, impulse);</samp></td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td><samp>xlabel('Time (msec)');</samp></td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td><samp>ylabel('Amplitude');</samp></td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td><samp>title('Unit Impulse Function');</samp></td>
+    </tr>
+  </tbody>
+</table>
