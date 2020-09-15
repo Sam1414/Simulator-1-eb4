@@ -121,7 +121,7 @@ function updateCosWork() {
             icon.appendChild(img);
             name.innerHTML = 'Step_size';
             step = 1 / (100 * parseInt(f));
-            value.innerHTML = '<div class="text-primary"><em>1x' + step + ' double</em></div>';
+            value.innerHTML = '<div class="text-primary"><em>' + step + '</em></div>';
             break;
         case 5:
             row = workspace.insertRow(-1);

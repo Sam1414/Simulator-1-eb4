@@ -8,11 +8,13 @@ var slider = document.getElementById('user_input');
 var ok = document.getElementById('input_button');
 var wave_selector = document.getElementById('wave_selector');
 var selected_wave = document.getElementById('selected_wave');
+var heading = document.getElementById('heading');
 // var code_frame = document.getElementById('code-frame');
 var code_div = document.getElementById('code-div');
 // var input_label = document.getElementById('input_value');
 var val = document.getElementById('value');
 input_div.style.display = "none";
+heading.style.visibility = 'hidden';
 // input_div.style.visibility = 'hidden';
 
 var wave;
@@ -32,30 +34,38 @@ reset.disabled = true;
 // console.log(wave_selector);
 
 wave_selector.onchange = () => {
+    heading.style.visibility = 'visible';
     code_div.innerHTML = '';
     Reset();
     wave = wave_selector.value;
     console.log('Wave:', wave);
     switch (wave) {
         case 'impulse':
+            heading.innerHTML = 'Unit Impulse';
             writeImpulseCode();
             break;
         case 'ramp':
+            heading.innerHTML = 'Unit Ramp';
             writeRampCode();
             break;
         case 'step':
+            heading.innerHTML = 'Unit Step';
             writeStepCode();
             break;
         case 'sine':
+            heading.innerHTML = 'Sine';
             writeSineCode();
             break;
         case 'cos':
+            heading.innerHTML = 'Cosine';
             writeCosCode();
             break;
         case 'exp':
+            heading.innerHTML = 'Exponential';
             writeExpCode();
             break;
         default:
+            heading.style.visibility = 'hidden';
             code_div.innerHTML = '';
             Reset();
             break;

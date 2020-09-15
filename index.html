@@ -64,7 +64,7 @@
           </div>
       </div>
     </div>
-    <div id="selected_wave" class="page-header text-center text-black" style="background-color: #d6e0f0"><h1><p class="font-weight-light py-2">Wave Selected:</p></h1></div>
+    <div class="page-header text-center text-black" style="background-color: #d6e0f0"><h1><p id="heading" class="font-weight-light py-2">Wave Selected:</p></h1></div>
     <div id="row1" class="row my-2">
       <div class="col-sm-5 my-2">
         <div class="card border-info">
@@ -80,10 +80,10 @@
               <button type="button" id="input_button" class="btn btn-outline-info">Ok</button>
             </div>
             <div class="table-responsive">
-              <table id="command" class="table table-borderless table-sm">
+              <table class="table table-borderless table-sm">
                 <colgroup><col style="width: 1px; background-color: #C0C0C0;"></col></colgroup>
-                <!-- <tbody>
-                </tbody> -->
+                <tbody id="command">
+                </tbody>
               </table>
             </div>
           </div>
@@ -112,7 +112,7 @@
           <div class="card-header bg-secondary text-white">Workspace</div>
           <div class="card-body bg-light">
             <div class="table-responsive">
-              <table id="workspace" class="table table-sm table-borderless">
+              <table class="table table-sm table-bordered table-striped">
                 <!-- <colgroup><col style="width: 1px; background-color: #C0C0C0;"></col></colgroup> -->
                 <thead class="thead-light">
                   <tr>
@@ -121,7 +121,7 @@
                     <th>Value</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody id="workspace">
                   <!-- <colgroup>
                     <col></col>
                     <col></col>
