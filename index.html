@@ -10,6 +10,7 @@
   <style media="screen">
     .jumbotron {
       background-color: #0c9463;
+      /* background-color: #e84a5f; */
     }
     .bg-color {
       background-color: #faf3dd;
@@ -17,14 +18,16 @@
     .container-fluid {
       padding-left: 5px;
       padding-right: 5px;
-      font-size: clamp(10px, 1.5vw, 14px);
+      font-size: clamp(10px, 1vw, 14px);
     }
     .input-group-text {
       color: white;
       background-color: #8559a5;
     }
     .page-header {
-      background-color: #018383;
+      /* background-color: #018383; */
+      background-color: #e84a5f;
+      /* background-color: #0c9463; */
     }
     /* .card {
       color: white;
@@ -37,18 +40,31 @@
       height: 300px!important;
     } */
     .command {
-      height: 300px;
+      height: min(38vw, 270px);
+      margin-bottom: 4px;
     }
     .workspace {
-      height: 300px;
+      height: min(47vw, 300px);
     }
     .code {
-      height: 600px;
+      height: min(75vw, 550px);
+      margin-bottom: 4px;
     }
     .plot {
       height: 600px;
     }
-
+    .command-card {
+      height: min(38vw, 270px);
+    }
+    .workspace-card {
+      height: min(47vw, 300px);
+    }
+    .code-card {
+      height: min(75vw, 550px);
+    }
+    .plot-card {
+      height: 600px;
+    }
     .card-body {
       padding: 0.3rem;
       background-color: #c3f0ca;
@@ -111,18 +127,13 @@
       <div class="row no-gutters">
 
         <!-- Column 1 -->
-        <div id="col-1" class="col-sm">
+        <div id="col-1" class="col">
 
           <!-- Command Window -->
           <div class="col card-group command">
-            <div class="card border-info">
+            <div class="card border-info command-card">
               <div class="card-header">Command Window</div>
               <div class="card-body">
-                <div id="input_div" class="my-2 py-2 justify-content-around input-group">
-                  <label id="input_value" for="formControlRange" class="mt-2">Enter Your Input: <span id="value"></span></label>
-                  <input id="user_input" class="form-control-range w-50" type="range"/>
-                  <button type="button" id="input_button" class="btn btn-danger">Ok</button>
-                </div>
                 <div class="table-responsive">
                   <table class="table table-borderless table-sm">
                     <colgroup><col style="width: 1px; background-color: #C0C0C0;"></col></colgroup>
@@ -130,13 +141,18 @@
                     </tbody>
                   </table>
                 </div>
+                <div id="input_div" class="justify-content-around input-group">
+                  <label id="input_value" for="formControlRange" class="mt-2">Enter Your Input: <span id="value"></span></label>
+                  <input id="user_input" class="form-control-range w-50" type="range"/>
+                  <button type="button" id="input_button" class="btn btn-danger">Ok</button>
+                </div>
               </div>
             </div>
           </div>
 
           <!-- Workspace -->
           <div class="col card-group workspace">
-            <div class="card border-info">
+            <div class="card border-info workspace-card">
               <div class="card-header">Workspace</div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -164,7 +180,7 @@
 
           <!-- Code Window -->
           <div class="col card-group code">
-            <div class="card border-info">
+            <div class="card border-info code-card">
               <div class="card-header">Code Window</div>
               <div class="card-body">
                 <div id="code-div" class="table-responsive"></div>
@@ -184,7 +200,7 @@
 
           <!-- Plot Window -->
           <div class="col card-group plot">
-            <div class="card border-info">
+            <div class="card border-info plot-card">
               <div class="card-header">Plot</div>
               <div class="card-body">
                 <div id="plot-container" class="card border-dark" style="box-sizing: content-box; overflow: scroll;"></div>
