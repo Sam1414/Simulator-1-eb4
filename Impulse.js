@@ -181,7 +181,7 @@ function plotImpulse() {
 
     for (let i = -100; i <= 100; i += 0.5) {
         lx.push(i);
-        if (i === parseInt(delay)) {
+        if (i === parseFloat(delay)) {
             console.log('pushed 1');
             ly.push(1);
         }

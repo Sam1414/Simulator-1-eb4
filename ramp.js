@@ -125,7 +125,7 @@ function updateRampWork() {
             img.src = arr_img;
             icon.appendChild(img);
             name.innerHTML = 't';
-            var dim = Math.abs(parseInt(t1)) + Math.abs(parseInt(t2)) + 1;
+            var dim = Math.abs(parseFloat(t1)) + Math.abs(parseFloat(t2)) + 1;
             value.innerHTML = '<div class="text-primary"><em>1x' + dim + ' double</em></div>';
             break;
         case 5:
@@ -138,7 +138,7 @@ function updateRampWork() {
             img.src = arr_img;
             icon.appendChild(img);
             name.innerHTML = 'x';
-            var dim = Math.abs(parseInt(t1)) + Math.abs(parseInt(t2)) + 1;
+            var dim = Math.abs(parseFloat(t1)) + Math.abs(parseFloat(t2)) + 1;
             value.innerHTML = '<div class="text-primary"><em>1x' + dim + ' double</em></div>';
             break;
     }
@@ -193,8 +193,8 @@ function plotRamp() {
     var lx = [];
     var ly = [];
 
-    t1 = parseInt(t1);
-    t2 = parseInt(t2);
+    t1 = parseFloat(t1);
+    t2 = parseFloat(t2);
     for (let i = t1; i <= t2; i += 1) {
         lx.push(i);
         if (i <= 0) {

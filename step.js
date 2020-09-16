@@ -153,7 +153,7 @@ function plotStep() {
     var lx = [];
     var ly = [];
 
-    delay = parseInt(delay);
+    delay = parseFloat(delay);
     for (let i = -2000; i <= 2000; i += 5) {
         lx.push(i);
         if (i <= delay) {

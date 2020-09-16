@@ -33,9 +33,26 @@
       color: white;
       background-color: #132743;
     }
+    /* .col {
+      height: 300px!important;
+    } */
+    .command {
+      height: 300px;
+    }
+    .workspace {
+      height: 300px;
+    }
+    .code {
+      height: 600px;
+    }
+    .plot {
+      height: 600px;
+    }
+
     .card-body {
       padding: 0.3rem;
       background-color: #c3f0ca;
+
     }
     /* card group aka PRIMARY */
     .card:hover {
@@ -48,9 +65,6 @@
     .table {
       color: #132743!important;
     }
-    /* #input_div {
-      visibility: 'hidden';
-    } */
     /* body {
      -moz-transform: scale(0.8, 0.8);
      zoom: 0.8;
@@ -100,16 +114,12 @@
         <div id="col-1" class="col-sm">
 
           <!-- Command Window -->
-          <div class="col card-group">
+          <div class="col card-group command">
             <div class="card border-info">
               <div class="card-header">Command Window</div>
               <div class="card-body">
                 <div id="input_div" class="my-2 py-2 justify-content-around input-group">
                   <label id="input_value" for="formControlRange" class="mt-2">Enter Your Input: <span id="value"></span></label>
-                  <!-- <script type="text/javascript">
-                    var val = document.getElementById('value');
-                    val.innerHTML = slider.value;
-                  </script> -->
                   <input id="user_input" class="form-control-range w-50" type="range"/>
                   <button type="button" id="input_button" class="btn btn-danger">Ok</button>
                 </div>
@@ -125,7 +135,7 @@
           </div>
 
           <!-- Workspace -->
-          <div class="col">
+          <div class="col card-group workspace">
             <div class="card border-info">
               <div class="card-header">Workspace</div>
               <div class="card-body">
@@ -153,7 +163,7 @@
         <div id="col-1" class="col-md">
 
           <!-- Code Window -->
-          <div class="col">
+          <div class="col card-group code">
             <div class="card border-info">
               <div class="card-header">Code Window</div>
               <div class="card-body">
@@ -173,7 +183,7 @@
         <div class="col-lg">
 
           <!-- Plot Window -->
-          <div class="col">
+          <div class="col card-group plot">
             <div class="card border-info">
               <div class="card-header">Plot</div>
               <div class="card-body">

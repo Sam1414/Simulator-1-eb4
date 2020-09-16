@@ -14,7 +14,7 @@ var code_div = document.getElementById('code-div');
 // var input_label = document.getElementById('input_value');
 var val = document.getElementById('value');
 input_div.style.display = "none";
-heading.style.visibility = 'hidden';
+// heading.style.visibility = 'hidden';
 // input_div.style.visibility = 'hidden';
 
 workspace.style = 'font-size: clamp(10px, 1.5vw, 14px);';
@@ -24,7 +24,7 @@ command.style = 'font-size: clamp(10px, 1.5vw, 14px);';
 var config = {
     responsive: true,
     scrollZoom: true,
-    displayModeBar: false
+    displayModeBar: true
 }
 
 
@@ -45,30 +45,30 @@ reset.disabled = true;
 // console.log(wave_selector);
 
 wave_selector.onchange = () => {
-    heading.style.visibility = 'visible';
+    // heading.style.visibility = 'visible';
     code_div.innerHTML = '';
     Reset();
     wave = wave_selector.value;
     console.log('Wave:', wave);
     switch (wave) {
         case 'impulse':
-            heading.innerHTML = 'Unit Impulse';
+            heading.innerHTML = 'Unit Impulse Signal';
             writeImpulseCode();
             break;
         case 'ramp':
-            heading.innerHTML = 'Unit Ramp';
+            heading.innerHTML = 'Unit Ramp Signal';
             writeRampCode();
             break;
         case 'step':
-            heading.innerHTML = 'Unit Step';
+            heading.innerHTML = 'Unit Step Signal';
             writeStepCode();
             break;
         case 'sine':
-            heading.innerHTML = 'Sine';
+            heading.innerHTML = 'Sine Signal';
             writeSineCode();
             break;
         case 'cos':
-            heading.innerHTML = 'Cosine';
+            heading.innerHTML = 'Cosine Signal';
             writeCosCode();
             break;
         case 'exp':
@@ -76,7 +76,7 @@ wave_selector.onchange = () => {
             writeExpCode();
             break;
         default:
-            heading.style.visibility = 'hidden';
+            // heading.style.visibility = 'hidden';
             code_div.innerHTML = '';
             Reset();
             break;

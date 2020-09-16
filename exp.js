@@ -128,12 +128,12 @@ function updateExpWork() {
             img.src = arr_img;
             icon.appendChild(img);
             name.innerHTML = 't';
-            dim = (Math.abs(parseInt(n1)) + Math.abs(parseInt(n2))) * 1000 + 1;
+            dim = (Math.abs(parseFloat(n1)) + Math.abs(parseFloat(n2))) * 1000 + 1;
             value.innerHTML = '<div class="text-primary"><em>1x' + dim + ' double</em></div>';
             break;
         case 5:
             user_variable = 'a';
-            enableInput('Enter the value of a for function exp(a * t): ', -5, 5, 1, 1);
+            enableInput('>> Enter the value of a for function exp(a * t): ', -5, 5, 1, 1);
             break;
         case 6:
             row = workspace.insertRow(-1);
@@ -145,7 +145,7 @@ function updateExpWork() {
             img.src = arr_img;
             icon.appendChild(img);
             name.innerHTML = 'y';
-            // dim = Math.abs(parseInt(n1)) + Math.abs(parseInt(n2)) + 1;
+            // dim = Math.abs(parseFloat(n1)) + Math.abs(parseFloat(n2)) + 1;
             value.innerHTML = '<div class="text-primary"><em>1x' + dim + ' double</em></div>';
             break;
     }
@@ -174,6 +174,8 @@ function userUpdateExpWork(user_variable, user_input, code_row_no) {
     else if (code_row_no - 1 === 3) {
 
         n2 = user_input;
+        console.log(n2);
+        console.log('user_input', user_input);
 
         command.rows[command_row_no - 1].cells[0].style = 'width: 1px;';
         command.rows[command_row_no - 1].cells[1].innerHTML += user_input;
@@ -217,9 +219,10 @@ function plotExp() {
     var lx = [];
     var ly = [];
 
-    n1 = parseInt(n1);
-    n2 = parseInt(n2);
-    a = parseInt(a);
+    console.log('n2', n2);
+    n1 = parseFloat(n1);
+    n2 = parseFloat(n2);
+    a = parseFloat(a);
     console.log('n1', n1);
     console.log('n2', n2);
 

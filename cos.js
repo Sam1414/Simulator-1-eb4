@@ -39,7 +39,7 @@ function writeCosCode() {
                 line.innerHTML = '<samp>Step_size = 1 / (100 * f);</samp>';
                 break;
             case 6:
-                line.innerHTML = '<samp>t = 0: Step_size: N*Step_size * 100;</samp>';
+                line.innerHTML = '<samp>t = 0: Step_size: N * Step_size * 100;</samp>';
                 break;
             case 7:
                 line.innerHTML = '<samp>y = a * sin(2 * pi * f * t);</samp>';
@@ -121,7 +121,7 @@ function updateCosWork() {
             img.src = arr_img;
             icon.appendChild(img);
             name.innerHTML = 'Step_size';
-            step = 1 / (100 * parseInt(f));
+            step = 1 / (100 * parseFloat(f));
             value.innerHTML = '<div class="text-primary"><em>' + step + '</em></div>';
             break;
         case 5:
@@ -134,7 +134,7 @@ function updateCosWork() {
             img.src = arr_img;
             icon.appendChild(img);
             name.innerHTML = 't';
-            var dim = ((Math.abs(parseInt(N)) * step * 100) / step) + 1;
+            var dim = ((Math.abs(parseFloat(N)) * step * 100) / step) + 1;
             value.innerHTML = '<div class="text-primary"><em>1x' + dim + ' double</em></div>';
             break;
         case 6:
@@ -147,7 +147,7 @@ function updateCosWork() {
             img.src = arr_img;
             icon.appendChild(img);
             name.innerHTML = 'y';
-            var dim = ((Math.abs(parseInt(N)) * step * 100) / step) + 1;
+            var dim = ((Math.abs(parseFloat(N)) * step * 100) / step) + 1;
             value.innerHTML = '<div class="text-primary"><em>1x' + dim + ' double</em></div>';
             break;
     }
@@ -219,12 +219,12 @@ function plotCos() {
     var lx = [];
     var ly = [];
 
-    a = parseInt(a);
-    f = parseInt(f);
-    N = parseInt(N);
+    a = parseFloat(a);
+    f = parseFloat(f);
+    N = parseFloat(N);
 
     var limit = N * step * 100;
-    for (let i = 0; i <= limit; i += step) {
+    for (let i = 0; i <= limit + step; i += step) {
         lx.push(i);
         var cos_val = a * Math.cos(2 * Math.PI * f * i);
         ly.push(cos_val);
