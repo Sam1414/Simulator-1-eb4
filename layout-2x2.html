@@ -1,0 +1,233 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> -->
+  <link rel="stylesheet" href="css/styles.css">
+  <title>Document</title>
+  <script src="plotly-latest.min.js"></script>
+  <style media="screen">
+    .bg-color {
+      background-color: #faf3dd;
+    }
+
+    .container-fluid {
+      font-size: clamp(10px, 1.5vw, 14px);
+    }
+
+    .panel-actions {
+      margin-top: -20px;
+      margin-bottom: 0;
+      text-align: right;
+    }
+
+    .panel-actions a {
+      color: #333;
+    }
+
+    .panel-fullscreen {
+      display: block;
+      z-index: 9999;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      overflow: auto;
+    }
+
+    /* body {
+     -moz-transform: scale(0.8, 0.8);
+     zoom: 0.8;
+     zoom: 80%;
+    } */
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid">
+
+    <!-- Title -->
+
+    <div class="jumbotron py-3 text-center">
+      <h1 class="display-4">Basic Signal Generation using MATLAB code</h1>
+      <!-- <p class="lead">This is a simple wave generation simulator.</p> -->
+      <hr class="my-3">
+      <div class="flex">
+        <h3>
+          <p class="font-weight-light font-italic">Choose a signal to start the Experiment: </p>
+        </h3>
+        <div class="">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="validatedInputGroupSelect" style="background-color: #e0e0e0;">Signals</label>
+            </div>
+            <select id="wave_selector" class="custom-select" required>
+              <option value="">Select a Basic Signal...</option>
+              <option value="sine">Sine</option>
+              <option value="cos">Cosine</option>
+              <option value="impulse">Unit Impulse</option>
+              <option value="step">Unit Step</option>
+              <option value="ramp">Unit Ramp</option>
+              <option value="exp">Exponential</option>
+            </select>
+          </div>
+          <div class="invalid-feedback">
+            Example invalid input group feedback
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Header -->
+
+    <div class="page-header text-center text-black" style="background-color: #d6e0f0">
+      <h1>
+        <p id="heading" class="font-weight-light py-2">Wave Selected:</p>
+      </h1>
+    </div>
+
+
+
+    <div id="row1" class="row my-2">
+      <div class="col-sm-5 my-2 no-gutter">
+        <div class="card border-info">
+          <div class="card-header bg-secondary text-white">Command Window</div>
+          <div class="card-body bg-light">
+            <div id="input_div" class="bg-color my-2 py-2 justify-content-around input-group">
+              <label id="input_value" for="formControlRange" class="mt-2">Enter Your Input: <span id="value"></span></label>
+              <!-- <script type="text/javascript">
+                var val = document.getElementById('value');
+                val.innerHTML = slider.value;
+              </script> -->
+              <input id="user_input" class="form-control-range w-50" type="range" />
+              <button type="button" id="input_button" class="btn btn-outline-info">Ok</button>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-borderless table-sm">
+                <colgroup>
+                  <col style="width: 1px; background-color: #C0C0C0;">
+                  </col>
+                </colgroup>
+                <tbody id="command">
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md my-2">
+        <div class="card border-info">
+          <div class="card-header bg-secondary text-white">Code Window</div>
+          <div class="card-body bg-light">
+            <div id="code-div" class="table-responsive">
+              <!-- <iframe id="code-frame" src='ImpulseCode.html'></iframe> -->
+            </div>
+          </div>
+          <div class="card-footer bg-transparent border-success">
+            Click Here to Start Code Execution:
+            <button id="start" type="button" class="btn btn-success ml-2">Start</button>
+            <button id="reset" type="button" class="btn btn-outline-info ml-2">Reset</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="row2" class="row my-2 d-flex">
+      <div class="col-sm-5  my-2">
+        <div class="card border-info">
+          <div class="card-header bg-secondary text-white">Workspace</div>
+          <div class="card-body bg-light">
+            <div class="table-responsive">
+              <table class="table table-sm table-striped">
+                <!-- <colgroup><col style="width: 1px; background-color: #C0C0C0;"></col></colgroup> -->
+                <thead class="thead-light">
+                  <tr>
+                    <th style="width: 1px;"></th>
+                    <th>Name</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
+                <tbody id="workspace">
+                  <!-- <colgroup>
+                    <col></col>
+                    <col></col>
+                    <col></col>
+                  </colgroup> -->
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md  my-2">
+        <div class="card border-info">
+          <div class="card-header bg-secondary text-white">Plot</div>
+          <div class="card-body bg-light">
+            <div id="plot-container" class="card border-dark w-75" style="width: 85%!important; box-sizing: content-box; overflow: scroll;"></div>
+            <!-- <div id="pt-container" style="box-sizing: content-box; overflow: hidden;"></div> -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <h2>Fullscreen toggle</h2>
+          <div class="card">
+            <div class="card-header d-flex">
+              <!-- <h4>Panel title</h4> -->
+                <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+            </div>
+            <div class="panel-body">
+              <h3>Panel body</h3>
+              <p>Click the resize icon in the top right to make this fullscreen.</p>
+              <p>Click the icon again to return to the normal size.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <h2>Fullscreen toggle</h2>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Panel title</h3>
+              <ul class="list-inline panel-actions">
+                <li><a href="#" id="panel-fullscreen" role="button" title="Toggle fullscreen"><i class="glyphicon glyphicon-resize-full"></i></a></li>
+              </ul>
+            </div>
+            <div class="panel-body">
+              <h3>Panel body</h3>
+              <p>Click the resize icon in the top right to make this fullscreen.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+
+    <script src="Impulse.js"></script>
+    <script src="ramp.js"></script>
+    <script src="step.js"></script>
+    <script src="sine.js"></script>
+    <script src="cos.js"></script>
+    <script src="exp.js"></script>
+    <script src="code.js"></script>
+</body>
+
+</html>

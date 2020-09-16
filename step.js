@@ -169,7 +169,10 @@ function plotStep() {
     var trace1 = {
         x: lx,
         y: ly,
-        type: 'line'
+        type: 'line',
+        line: {
+            color: 'red'
+        }
     };
 
     var layout = {
@@ -179,12 +182,9 @@ function plotStep() {
         },
         yaxis: {
             title: 'Amplitude'
-        }
+        },
+        plot_bgcolor: '#c3f0ca'
     };
-
-    var config = {
-        responsive: true
-    }
 
     var data = [trace1];
 

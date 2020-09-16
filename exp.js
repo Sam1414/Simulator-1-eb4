@@ -24,7 +24,7 @@ function writeExpCode() {
         sno.innerHTML = '' + i;
         switch (i) {
             case 1:
-                line.innerHTML = '<samp># Exponantial Signal</samp>';
+                line.innerHTML = '<samp># Exponential Signal</samp>';
                 break;
             case 2:
                 line.innerHTML = '<samp> disp(\'Enter the time range for generating exponential function below\')</samp>';
@@ -232,7 +232,10 @@ function plotExp() {
     var trace1 = {
         x: lx,
         y: ly,
-        type: 'line'
+        type: 'line',
+        line: {
+            color: 'red'
+        }
     };
 
     var data = [trace1];
@@ -244,12 +247,9 @@ function plotExp() {
         },
         yaxis: {
             title: 'Amplitude'
-        }
+        },
+        plot_bgcolor: '#c3f0ca'
     };
-
-    var config = {
-        responsive: true
-    }
 
     isPlotted = true;
     console.log('isPlotted', isPlotted);

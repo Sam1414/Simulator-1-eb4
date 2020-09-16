@@ -209,7 +209,10 @@ function plotRamp() {
     var trace1 = {
         x: lx,
         y: ly,
-        type: 'line'
+        type: 'line',
+        line: {
+            color: '#red'
+        }
     };
 
     var data = [trace1];
@@ -221,12 +224,9 @@ function plotRamp() {
         },
         yaxis: {
             title: 'Amplitude'
-        }
+        },
+        plot_bgcolor: '#c3f0ca'
     };
-
-    var config = {
-        responsive: true
-    }
 
     isPlotted = true;
     console.log('isPlotted', isPlotted);

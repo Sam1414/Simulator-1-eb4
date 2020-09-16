@@ -17,6 +17,17 @@ input_div.style.display = "none";
 heading.style.visibility = 'hidden';
 // input_div.style.visibility = 'hidden';
 
+workspace.style = 'font-size: clamp(10px, 1.5vw, 14px);';
+command.style = 'font-size: clamp(10px, 1.5vw, 14px);';
+
+// Plot Configurations
+var config = {
+    responsive: true,
+    scrollZoom: true,
+    displayModeBar: false
+}
+
+
 var wave;
 var code_row_no = 0;
 var work_row_no = 0;

@@ -4,149 +4,192 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> -->
-  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/styles.css">
   <title>Document</title>
   <script src="plotly-latest.min.js"></script>
   <style media="screen">
+    .jumbotron {
+      background-color: #0c9463;
+    }
     .bg-color {
       background-color: #faf3dd;
     }
     .container-fluid {
-      /* font-size: 16px; */
-      /* font-size: 1.5vw; */
+      padding-left: 5px;
+      padding-right: 5px;
       font-size: clamp(10px, 1.5vw, 14px);
     }
+    .input-group-text {
+      color: white;
+      background-color: #8559a5;
+    }
+    .page-header {
+      background-color: #018383;
+    }
+    /* .card {
+      color: white;
+    } */
+    .card-header {
+      color: white;
+      background-color: #132743;
+    }
+    .card-body {
+      padding: 0.3rem;
+      background-color: #c3f0ca;
+    }
+    /* card group aka PRIMARY */
+    .card:hover {
+      box-shadow: 0px 10px 30px -5px rgba(12, 5, 62, 0.95);
+      z-index: 100;
+    }
+    .col {
+      padding: 5px;
+    }
+    .table {
+      color: #132743!important;
+    }
+    /* #input_div {
+      visibility: 'hidden';
+    } */
     /* body {
      -moz-transform: scale(0.8, 0.8);
      zoom: 0.8;
      zoom: 80%;
     } */
-    /* .svg-container {
-      object-fit: inherit;
-    } */
-    /* .blue {
-      text-decoration-color: blue;
-      text-emphasis-color: blue;
-    } */
-    /* #workspace>tbody>tr>:nth-child(3){text-decoration-color:blue;} */
-    /* #workspace>thead>tr>:nth-child(3){color: black;} */
-    /* #workspace>:nth-child(1)>:nth-child(3){text-decoration-color: blue;} */
   </style>
 </head>
 
 <body>
   <div class="container-fluid">
-    <div class="jumbotron py-3">
-      <h1 class="display-4">Basic Signal Generation</h1>
-      <p class="lead">This is a simple wave generation simulator.</p>
+
+  <!-- Title -->
+
+    <div class="jumbotron py-3 text-center text-white">
+      <h1 class="display-4">Basic Signal Generation using MATLAB Codes</h1>
       <hr class="my-3">
       <div class="flex">
-          <h3><p class="font-weight-light font-italic">Choose your wave to start the Experiment: </p></h3>
+          <h3><p class="font-weight-light font-italic">Choose a signal to start the Experiment: </p></h3>
           <div class="">
             <div class="input-group">
               <div class="input-group-prepend">
-                <label class="input-group-text" for="validatedInputGroupSelect"  style="background-color: #e0e0e0;">Waves</label>
+                <label class="input-group-text" for="validatedInputGroupSelect">Basic Signals</label>
               </div>
               <select id="wave_selector" class="custom-select" required>
-                <option value="">Select a Wave...</option>
-                <option value="sine">Sine</option>
-                <option value="cos">Cosine</option>
-                <option value="impulse">Unit Impulse</option>
-                <option value="step">Unit Step</option>
-                <option value="ramp">Unit Ramp</option>
-                <option value="exp">Exponential</option>
+                <option value="">Select a Signal...</option>
+                <option value="sine">Sine Signal</option>
+                <option value="cos">Cosine Signal</option>
+                <option value="impulse">Unit Impulse Signal</option>
+                <option value="step">Unit Step Signal</option>
+                <option value="ramp">Unit Ramp Signal</option>
+                <option value="exp">Exponential Signal</option>
               </select>
             </div>
-            <div class="invalid-feedback">
-              Example invalid input group feedback
-            </div>
           </div>
-      </div>
-    </div>
-    <div class="page-header text-center text-black" style="background-color: #d6e0f0"><h1><p id="heading" class="font-weight-light py-2">Wave Selected:</p></h1></div>
-    <div id="row1" class="row my-2">
-      <div class="col-sm-5 my-2">
-        <div class="card border-info">
-          <div class="card-header bg-secondary text-white">Command Window</div>
-          <div class="card-body bg-light">
-            <div id="input_div" class="bg-color my-2 py-2 justify-content-around input-group">
-              <label id="input_value" for="formControlRange" class="mt-2">Enter Your Input: <span id="value"></span></label>
-              <!-- <script type="text/javascript">
-                var val = document.getElementById('value');
-                val.innerHTML = slider.value;
-              </script> -->
-              <input id="user_input" class="form-control-range w-50" type="range"/>
-              <button type="button" id="input_button" class="btn btn-outline-info">Ok</button>
-            </div>
-            <div class="table-responsive">
-              <table class="table table-borderless table-sm">
-                <colgroup><col style="width: 1px; background-color: #C0C0C0;"></col></colgroup>
-                <tbody id="command">
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md my-2">
-        <div class="card border-info">
-          <div class="card-header bg-secondary text-white">Code Window</div>
-          <div class="card-body bg-light">
-            <div id="code-div" class="table-responsive">
-              <!-- <iframe id="code-frame" src='ImpulseCode.html'></iframe> -->
-            </div>
-          </div>
-          <div class="card-footer bg-transparent border-success">
-              Click Here to Start Code Execution:
-            <button id="start" type="button" class="btn btn-outline-info ml-2">Start</button>
-            <button id="reset" type="button" class="btn btn-outline-info ml-2">Reset</button>
-          </div>
-        </div>
       </div>
     </div>
 
-    <div id="row2" class="row my-2 d-flex">
-      <div class="col-sm-5  my-2">
-        <div class="card border-info">
-          <div class="card-header bg-secondary text-white">Workspace</div>
-          <div class="card-body bg-light">
-            <div class="table-responsive">
-              <table class="table table-sm table-bordered table-striped">
-                <!-- <colgroup><col style="width: 1px; background-color: #C0C0C0;"></col></colgroup> -->
-                <thead class="thead-light">
-                  <tr>
-                    <th style="width: 1px;"></th>
-                    <th>Name</th>
-                    <th>Value</th>
-                  </tr>
-                </thead>
-                <tbody id="workspace">
-                  <!-- <colgroup>
-                    <col></col>
-                    <col></col>
-                    <col></col>
-                  </colgroup> -->
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
+    <!-- Header -->
+
+    <div class="page-header text-center text-white"><h1><p id="heading" class="font-weight-light py-2"></p></h1></div>
+
+    <div class="container-fluid">
+      <!-- Main Row 1 -->
+      <div class="row no-gutters">
+
+        <!-- Column 1 -->
+        <div id="col-1" class="col-sm">
+
+          <!-- Command Window -->
+          <div class="col card-group">
+            <div class="card border-info">
+              <div class="card-header">Command Window</div>
+              <div class="card-body">
+                <div id="input_div" class="my-2 py-2 justify-content-around input-group">
+                  <label id="input_value" for="formControlRange" class="mt-2">Enter Your Input: <span id="value"></span></label>
+                  <!-- <script type="text/javascript">
+                    var val = document.getElementById('value');
+                    val.innerHTML = slider.value;
+                  </script> -->
+                  <input id="user_input" class="form-control-range w-50" type="range"/>
+                  <button type="button" id="input_button" class="btn btn-danger">Ok</button>
+                </div>
+                <div class="table-responsive">
+                  <table class="table table-borderless table-sm">
+                    <colgroup><col style="width: 1px; background-color: #C0C0C0;"></col></colgroup>
+                    <tbody id="command">
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="col-md  my-2">
-        <div class="card border-info">
-          <div class="card-header bg-secondary text-white">Plot</div>
-          <div class="card-body bg-light">
-            <div id="plot-container" class="card border-dark w-75" style="width: 85%!important; box-sizing: content-box; overflow: scroll;"></div>
-            <!-- <div id="pt-container" style="box-sizing: content-box; overflow: hidden;"></div> -->
+
+          <!-- Workspace -->
+          <div class="col">
+            <div class="card border-info">
+              <div class="card-header">Workspace</div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-sm table-striped">
+                    <!-- <colgroup><col style="width: 1px; background-color: #C0C0C0;"></col></colgroup> -->
+                    <thead id="workspace" class="thead-light">
+                      <tr>
+                        <th style="width: 1px;"></th>
+                        <th>Name</th>
+                        <th>Value</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
           </div>
+
         </div>
+
+        <!-- Column 2 -->
+        <div id="col-1" class="col-md">
+
+          <!-- Code Window -->
+          <div class="col">
+            <div class="card border-info">
+              <div class="card-header">Code Window</div>
+              <div class="card-body">
+                <div id="code-div" class="table-responsive"></div>
+              </div>
+              <div class="card-footer bg-transparent border-success">
+                  Click Here to Start Code Execution:
+                <button id="start" type="button" class="btn btn-success ml-2">Start</button>
+                <button id="reset" type="button" class="btn btn-info ml-2">Reset</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Column 3 -->
+        <div class="col-lg">
+
+          <!-- Plot Window -->
+          <div class="col">
+            <div class="card border-info">
+              <div class="card-header">Plot</div>
+              <div class="card-body">
+                <div id="plot-container" class="card border-dark" style="box-sizing: content-box; overflow: scroll;"></div>
+                <!-- <div id="pt-container" style="box-sizing: content-box; overflow: hidden;"></div> -->
+              </div>
+              <div class="card-footer">Scroll to Zoom</div>
+            </div>
+          </div>
+
+        </div>
+
       </div>
+
+    </div>
+
     </div>
 
   </div>

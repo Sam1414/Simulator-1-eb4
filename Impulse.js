@@ -7,7 +7,7 @@ function writeImpulseCode() {
     var code_table = document.createElement('table');
     code_table.className = 'table table-sm table-hover';
     code_table.id = 'code';
-    // code_table.style = 'font-size: clamp(10px, 1.5vw, 14px);';
+    code_table.style = 'font-size: clamp(10px, 1.5vw, 14px);';
     // code_div.appendChild(code_table);
 
     var col_grp = document.createElement('colgroup');
@@ -194,8 +194,9 @@ function plotImpulse() {
         x: lx,
         y: ly,
         type: 'line',
-        mode: 'lines',
-        name: 'Impulse'
+        line: {
+            color: '#red'
+        }
     };
 
     var layout = {
@@ -205,12 +206,9 @@ function plotImpulse() {
         },
         yaxis: {
             title: 'Amplitude'
-        }
+        },
+        plot_bgcolor: '#c3f0ca'
     };
-
-    var config = {
-        responsive: true
-    }
 
     var data = [trace1];
 

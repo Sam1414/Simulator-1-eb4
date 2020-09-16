@@ -27,13 +27,13 @@ function writeCosCode() {
                 line.innerHTML = '<samp># Cos Wave</samp>';
                 break;
             case 2:
-                line.innerHTML = '<samp> a = input(\'Enter Amplitude of Cos wave: \');</samp>';
+                line.innerHTML = '<samp> a = input(\'Enter Amplitude: \');</samp>';
                 break;
             case 3:
-                line.innerHTML = '<samp>f = input(\'Enter Frequency of Cos wave (in Hz): \');</samp>';
+                line.innerHTML = '<samp>f = input(\'Enter Frequency(in Hz): \');</samp>';
                 break;
             case 4:
-                line.innerHTML = '<samp>N = input(\'Enter the no. of complete cycles of wave you want to generate: \'); </samp>';
+                line.innerHTML = '<samp>N = input(\'Enter no. of cycles to generate: \'); </samp>';
                 break;
             case 5:
                 line.innerHTML = '<samp>Step_size = 1 / (100 * f);</samp>';
@@ -96,19 +96,20 @@ function cosCodeHighlight() {
 }
 
 function updateCosWork() {
+    workspace.style = 'font-size: clamp(10px, 1.5vw, 14px);';
     var row, icon, name, value;
     switch (code_row_no) {
         case 1:
             user_variable = 'a';
-            enableInput('>> Enter Amplitude of Cos wave: ', 1, 5, 1, 2);
+            enableInput('>> Enter Amplitude: ', 1, 5, 1, 2);
             break;
         case 2:
             user_variable = 'f';
-            enableInput('>> Enter Frequency of Cos wave (in Hz): ', 10, 30, 1, 20);
+            enableInput('>> Enter Frequency(in Hz): ', 10, 30, 1, 20);
             break;
         case 3:
             user_variable = 'N';
-            enableInput('>> Enter the no.of complete cycle of wave you want to generate: ', 1, 4, 1, 2);
+            enableInput('>> Enter no.of cycles to generate: ', 1, 4, 1, 2);
             break;
         case 4:
             row = workspace.insertRow(-1);
@@ -232,7 +233,10 @@ function plotCos() {
     var trace1 = {
         x: lx,
         y: ly,
-        type: 'line'
+        type: 'line',
+        line: {
+            color: '#red'
+        }
     };
 
     var layout = {
@@ -242,12 +246,9 @@ function plotCos() {
         },
         yaxis: {
             title: 'Amplitude'
-        }
+        },
+        plot_bgcolor: '#c3f0ca'
     };
-
-    var config = {
-        responsive: true
-    }
 
     var data = [trace1];
 
