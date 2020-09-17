@@ -5,11 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="apple-touch-icon" sizes="512x512" href="images/android-chrome-512x512.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="images/android-chrome-192x192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
   <title>Basic Signal Generation</title>
-  <script src="plotly-latest.min.js"></script>
+  <script src="js/plot.js"></script>
   <style media="screen">
     .jumbotron {
       background-color: #0c9463;
+      margin-bottom: 6px;
       /* background-color: #e84a5f; */
     }
     .bg-color {
@@ -28,42 +34,37 @@
       /* background-color: #018383; */
       background-color: #e84a5f;
       /* background-color: #0c9463; */
+      margin-bottom: 6px!important;
     }
-    /* .card {
-      color: white;
-    } */
     .card-header {
       color: white;
       background-color: #132743;
     }
-    /* .col {
-      height: 300px!important;
-    } */
     .command {
-      height: min(38vw, 270px);
+      height: min(38vw, 275px);
       margin-bottom: 4px;
     }
     .workspace {
       height: min(47vw, 300px);
     }
     .code {
-      height: min(75vw, 550px);
+      height: min(75vw, 580px);
       margin-bottom: 4px;
     }
     .plot {
-      height: 600px;
+      height: 580px;
     }
     .command-card {
-      height: min(38vw, 270px);
+      height: min(38vw, 275px);
     }
     .workspace-card {
       height: min(47vw, 300px);
     }
     .code-card {
-      height: min(75vw, 550px);
+      height: min(75vw, 580px);
     }
     .plot-card {
-      height: 600px;
+      height: 580px;
     }
     .card-body {
       padding: 0.3rem;
@@ -81,12 +82,8 @@
     .table {
       color: #132743!important;
     }
-    /* body {
-     -moz-transform: scale(0.8, 0.8);
-     zoom: 0.8;
-     zoom: 80%;
-    } */
   </style>
+
 </head>
 
 <body>
@@ -127,7 +124,7 @@
       <div class="row no-gutters">
 
         <!-- Column 1 -->
-        <div id="col-1" class="col">
+        <div id="col-1" class="col" style="padding-top: 0px">
 
           <!-- Command Window -->
           <div class="col card-group command">
@@ -214,18 +211,20 @@
 
       </div>
 
+      <div class="row p-4"></div>
+
     </div>
 
     </div>
 
   </div>
-<script src="Impulse.js"></script>
-<script src="ramp.js"></script>
-<script src="step.js"></script>
-<script src="sine.js"></script>
-<script src="cos.js"></script>
-<script src="exp.js"></script>
-<script src="code.js"></script>
+<script src="js/impulse.js"></script>
+<script src="js/ramp.js"></script>
+<script src="js/step.js"></script>
+<script src="js/sine.js"></script>
+<script src="js/cos.js"></script>
+<script src="js/exp.js"></script>
+<script src="js/code.js"></script>
 </body>
 
 </html>

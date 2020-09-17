@@ -7,7 +7,7 @@ function writeExpCode() {
     var code_table = document.createElement('table');
     code_table.className = 'table table-sm table-hover';
     code_table.id = 'code';
-    code_table.style = 'font-size: clamp(10px, 1.5vw, 14px);';
+    code_div.style = 'font-size: clamp(8px, 1.2vw, 14px);';
     // code_div.appendChild(code_table);
 
     var col_grp = document.createElement('colgroup');
@@ -226,7 +226,7 @@ function plotExp() {
     console.log('n1', n1);
     console.log('n2', n2);
 
-    for (let i = n1; i <= n2; i += 0.1) {
+    for (let i = n1; i <= n2 + (0.1 / 2); i += 0.1) {
         lx.push(i);
         var exp_value = Math.exp(a * i);
         ly.push(exp_value);
@@ -246,12 +246,20 @@ function plotExp() {
     var layout = {
         title: 'Exponential Function',
         xaxis: {
-            title: 'Time (sec)'
+            title: 'Time (sec)',
+            showspikes: true,
         },
         yaxis: {
-            title: 'Amplitude'
+            title: 'Amplitude',
+            showspikes: true,
         },
-        plot_bgcolor: '#c3f0ca'
+        plot_bgcolor: '#c3f0ca',
+        margin: {
+            l: 70,
+            r: 10,
+            t: 90,
+            b: 70,
+        },
     };
 
     isPlotted = true;
