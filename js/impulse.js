@@ -24,7 +24,7 @@ function writeImpulseCode() {
         sno.innerHTML = '' + i;
         switch (i) {
             case 1:
-                line.innerHTML = '<samp># Unit impulse</samp>';
+                line.innerHTML = '<samp>clear;</samp>';
                 break;
             case 2:
                 line.innerHTML = '<samp>t = [-1: 0.005: 1] * 100;</samp>';
@@ -93,6 +93,11 @@ function impulseCodeHighlight() {
 function updateImpuseWork() {
     var row, icon, name, value;
     switch (code_row_no) {
+        case 0:
+            while (workspace.rows.length > 1) {
+                workspace.deleteRow(1);
+            }
+            break;
         case 1:
             row = workspace.insertRow(-1);
             icon = row.insertCell(0);

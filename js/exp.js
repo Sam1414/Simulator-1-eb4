@@ -7,8 +7,7 @@ function writeExpCode() {
     var code_table = document.createElement('table');
     code_table.className = 'table table-sm table-hover';
     code_table.id = 'code';
-    code_div.style = 'min-block-size: fit-content;';
-    code_table.style = 'font-size: clamp(10px, 1.7vw, 14px);';
+    code_table.style = 'font-size: clamp(10px, 1.5vw, 14px);';
     // code_div.appendChild(code_table);
 
     var col_grp = document.createElement('colgroup');
@@ -25,10 +24,10 @@ function writeExpCode() {
         sno.innerHTML = '' + i;
         switch (i) {
             case 1:
-                line.innerHTML = '<samp># Exponential Signal</samp>';
+                line.innerHTML = '<samp>clear <span style="color: blue">all</span>;</samp>';
                 break;
             case 2:
-                line.innerHTML = '<samp> disp(\'Enter the time range for generating exponential function below\')</samp>';
+                line.innerHTML = '<samp> disp(\'Enter the time range:\')</samp>';
                 break;
             case 3:
                 line.innerHTML = '<samp>n1 = input(\'Lower limit (in sec): \');</samp>';
@@ -40,7 +39,7 @@ function writeExpCode() {
                 line.innerHTML = '<samp>t = n1: 0.001: n2;</samp>';
                 break;
             case 6:
-                line.innerHTML = '<samp>a = input(\'Enter the value of a for function exp(a * t): \');</samp>';
+                line.innerHTML = '<samp>a = input(\'Enter a for function exp(a * t): \');</samp>';
                 break;
             case 7:
                 line.innerHTML = '<samp>y = exp(a * t);</samp>';
@@ -98,6 +97,11 @@ function expCodeHighlight() {
 function updateExpWork() {
     var row, icon, name, value;
     switch (code_row_no) {
+        case 0:
+            while (workspace.rows.length > 1) {
+                workspace.deleteRow(1);
+            }
+            break;
         case 1:
             var row, cursor, mesg;
             row = command.insertRow(-1);
@@ -108,7 +112,7 @@ function updateExpWork() {
             mesg = row.insertCell(1);
             cursor.innerHTML = '<em>f(x)</em>';
             cursor.style = 'width: 1px;'
-            mesg.innerHTML = '>> Enter the time range for generating Exponential function below: ';
+            mesg.innerHTML = '>> Enter the time range: ';
             command_row_no++;
             break;
         case 2:
@@ -134,7 +138,7 @@ function updateExpWork() {
             break;
         case 5:
             user_variable = 'a';
-            enableInput('>> Enter the value of a for function exp(a * t): ', -5, 5, 1, 1);
+            enableInput('>> Enter a for function exp(a * t): ', -5, 5, 1, 1);
             break;
         case 6:
             row = workspace.insertRow(-1);

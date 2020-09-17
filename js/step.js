@@ -25,7 +25,7 @@ function writeStepCode() {
         sno.innerHTML = '' + i;
         switch (i) {
             case 1:
-                line.innerHTML = '<samp># Unit Step</samp>';
+                line.innerHTML = '<samp>clear;</samp>';
                 break;
             case 2:
                 line.innerHTML = '<samp>t = [-1 : 0.0001 : 1] * 1000;</samp>';
@@ -90,6 +90,11 @@ function stepCodeHighlight() {
 function updateStepWork() {
     var row, icon, name, value;
     switch (code_row_no) {
+        case 0:
+            while (workspace.rows.length > 1) {
+                workspace.deleteRow(1);
+            }
+            break;
         case 1:
             row = workspace.insertRow(-1);
             icon = row.insertCell(0);

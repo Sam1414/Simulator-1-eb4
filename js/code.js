@@ -149,9 +149,6 @@ reset.onclick = Reset;
 function Reset() {
     code_row_no = 0;
     command_row_no = 0;
-    while (workspace.rows.length > 1) {
-        workspace.deleteRow(1);
-    }
     while (command.rows.length > 0) {
         command.deleteRow(0);
     }

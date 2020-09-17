@@ -24,7 +24,7 @@ function writeCosCode() {
         sno.innerHTML = '' + i;
         switch (i) {
             case 1:
-                line.innerHTML = '<samp># Cos Wave</samp>';
+                line.innerHTML = '<samp>clear;</samp>';
                 break;
             case 2:
                 line.innerHTML = '<samp> a = input(\'Enter Amplitude: \');</samp>';
@@ -99,6 +99,11 @@ function updateCosWork() {
     workspace.style = 'font-size: clamp(10px, 1.5vw, 14px);';
     var row, icon, name, value;
     switch (code_row_no) {
+        case 0:
+            while (workspace.rows.length > 1) {
+                workspace.deleteRow(1);
+            }
+            break;
         case 1:
             user_variable = 'a';
             enableInput('>> Enter Amplitude: ', -1000, 1000, 1, 100);

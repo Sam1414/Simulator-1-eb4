@@ -24,7 +24,7 @@ function writeRampCode() {
         sno.innerHTML = '' + i;
         switch (i) {
             case 1:
-                line.innerHTML = '<samp># Unit Ramp</samp>';
+                line.innerHTML = '<samp>clear <span style="color: blue">all</span>;</samp>';
                 break;
             case 2:
                 line.innerHTML = '<samp> disp(\'Enter the time range for generating ramp function below:\')</samp>';
@@ -94,6 +94,11 @@ function rampCodeHighlight() {
 function updateRampWork() {
     var row, icon, name, value;
     switch (code_row_no) {
+        case 0:
+            while (workspace.rows.length > 1) {
+                workspace.deleteRow(1);
+            }
+            break;
         case 1:
             var row, cursor, mesg;
             row = command.insertRow(-1);
