@@ -7,6 +7,7 @@ function writeExpCode() {
     var code_table = document.createElement('table');
     code_table.className = 'table table-sm table-hover';
     code_table.id = 'code';
+    code_div.style = 'min-block-size: fit-content;';
     code_table.style = 'font-size: clamp(10px, 1.7vw, 14px);';
     // code_div.appendChild(code_table);
 
