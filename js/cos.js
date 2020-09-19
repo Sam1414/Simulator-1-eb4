@@ -18,7 +18,7 @@ function writeCosCode() {
                 line.innerHTML = '<samp> a = input(\'Enter Amplitude: \');</samp>';
                 break;
             case 5:
-                line.innerHTML = '<samp>f = input(\'Enter Frequency(in Hz): \');</samp>';
+                line.innerHTML = '<samp>f = input(\'Enter Frequency (Hz): \');</samp>';
                 break;
             case 6:
                 line.innerHTML = '<samp>N = input(\'Enter no. of cycles to generate: \'); </samp>';
@@ -77,7 +77,7 @@ function cosCodeTraverse() {
                 user_variable = 'f';
                 user_img = 'arr';
                 displayCommand('>> Enter Frequency (in Hz): ');
-                enableInput(1, 1000, 1, 220);
+                enableInput(0, 1000, 1, 220);
                 // workspace updated on OK pressing.
                 break;
             case 6:
@@ -92,12 +92,22 @@ function cosCodeTraverse() {
                 updateWorkspace('step', '' + step, 'arr');
                 break;
             case 8:
-                var dim = N * 100 + 1;
-                updateWorkspace('t', '1x' + dim + ' double', 'arr');
+                if (f === 0) {
+                    updateWorkspace('t', '1xNaN', 'arr');
+                }
+                else {
+                    var dim = N * 100 + 1;
+                    updateWorkspace('t', '1x' + dim + ' double', 'arr');
+                }
                 break;
             case 9:
-                var dim = N * 100 + 1;
-                updateWorkspace('y', '1x' + dim + ' double', 'arr');
+                if (f === 0) {
+                    updateWorkspace('t', '1xNaN', 'arr');
+                }
+                else {
+                    var dim = N * 100 + 1;
+                    updateWorkspace('y', '1x' + dim + ' double', 'arr');
+                }
                 break;
             case 10:
                 start.innerHTML = 'End';
@@ -131,14 +141,17 @@ function plotCos() {
     var lx = [];
     var ly = [];
 
-    var upper_limit = N * (1 / f);
+    if (f > 0) {
+        var upper_limit = N * (1 / f);
 
-    var i;
-    var cos_val;
-    for (i = 0; i <= upper_limit + (step / 2); i += step) {
-        lx.push(i);
-        cos_val = a * Math.cos(2 * Math.PI * f * i);
-        ly.push(cos_val);
+        for (let i = 0; i <= upper_limit + (step / 2); i += step) {
+            lx.push(i);
+            var cos_val = a * Math.cos(2 * Math.PI * f * i);
+            ly.push(cos_val);
+        }
+    }
+    else {
+        alert('Invalid Frequency!, Time period = 1/frequency, thus frequency cannot be 0.');
     }
 
     plotFigure(lx, ly, 'Cosine Signal', 'Time (sec)', 'Amplitude');

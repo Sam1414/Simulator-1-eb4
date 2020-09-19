@@ -178,7 +178,7 @@ function clearCodeTable() {
 
 function createEmptyCodeTable() {
     code_row_no = 0;
-    for (let i = 0; i < 14; i++) {
+    for (let i = 0; i < 17; i++) {
         var row, sno, line;
         row = code_table.insertRow(i);
         sno = row.insertCell(0);

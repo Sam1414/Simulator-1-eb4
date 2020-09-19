@@ -21,7 +21,7 @@ function writeImpulseCode() {
                 line.innerHTML = '<samp>L = length(t);</samp>';
                 break;
             case 6:
-                line.innerHTML = '<samp>delay = input(\'Enter delay (in msec): \');</samp>';
+                line.innerHTML = '<samp>delay = input(\'Enter delay (msec): \');</samp>';
                 break;
             case 7:
                 line.innerHTML = '<samp>n1 = (L - 1) / 2 + delay;</samp>'
@@ -39,7 +39,7 @@ function writeImpulseCode() {
                 line.innerHTML = '<samp>xlabel(\'Time(msec)\');</samp>';
                 break;
             case 12:
-                line.innerHTML = '<samp>ylabel(\'Amplitude\');</samp>';
+                line.innerHTML = '<samp>ylabel(\'Magnitude\');</samp>';
                 break;
             case 13:
                 line.innerHTML = '<samp>title(\'Unit Impulse Function\');</samp>';
@@ -74,7 +74,7 @@ function impulseCodeTraverse() {
             case 6:
                 user_variable = 'delay';
                 user_img = 'arr';
-                displayCommand('>> Enter the delay (in msec): ');
+                displayCommand('>> Enter delay (msec): ');
                 enableInput(-800, 800, 1, 0);
                 // workspace updated on OK pressing.
                 break;
@@ -116,12 +116,12 @@ function plotImpulse() {
         lx.push(i);
         if (i === delay) {
             console.log('pushed 1');
-            ly.push(100000);
+            ly.push(1);
         }
         else {
             ly.push(0);
         }
     }
 
-    plotFigure(lx, ly, 'Unit Impulse Function', 'Time (msec)', 'Amplitude');
+    plotFigure(lx, ly, 'Unit Impulse Function', 'Time (msec)', 'Magnitude');
 }

@@ -63,7 +63,7 @@ function stepCodeTraverse() {
             case 5:
                 user_variable = 'delay';
                 user_img = 'arr';
-                displayCommand('>> Enter the delay (in msec): ');
+                displayCommand('>> Enter delay (in msec): ');
                 enableInput(-800, 800, 1, 0);
                 // workspace updated on OK pressing.
                 break;
