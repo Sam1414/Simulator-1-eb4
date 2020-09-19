@@ -347,7 +347,7 @@ function updateWorkspace(n, v, i) {
     value = row.cells[3];
     icon.appendChild(img);
     name.innerHTML = n;
-    value.innerHTML = v;
+    value.innerHTML = '<em style="color: blue;">' + v + '</em>';
 }
 
 reset.onclick = Reset;
