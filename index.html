@@ -82,7 +82,8 @@
       width: 100%;
     }
     .explanation-card {
-      height: 260px;
+      /* height: 260px; */
+      height: fit-content;
       /* min-height: max-content; */
       /* flex-direction: row; */
     }
@@ -255,7 +256,11 @@
           <!-- Explanation -->
           <div class="card border-info explanation-card">
             <div class="card-header">Explanation</div>
-            <div id="explanation-body" class="card-body"></div>
+            <div id="explanation-body" class="card-body">
+              <ul id="explanation-list" class="list-group">
+                <!-- <li class="list-group-item list-group-item-success">+</li> -->
+              </ul>
+            </div>
           </div>
 
         <!-- Plot Window -->

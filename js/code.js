@@ -15,6 +15,7 @@ var code_body = document.getElementById('code-body');
 var code_card = document.getElementById('code-card');
 var plot_container = document.getElementById('plot-container');
 var explanation_body = document.getElementById('explanation-body');
+var explanation_list = document.getElementById('explanation-list');
 var header_div = document.getElementById('header-div');
 // var input_label = document.getElementById('input_value');
 var val = document.getElementById('value');
@@ -44,6 +45,7 @@ reset.disabled = true;
 createEmptyCodeTable();
 createEmptyWorkTable();
 createEmptyCommandTable();
+createEmptyExplanationList();
 
 wave_selector.onchange = () => {
     // heading.style.visibility = 'visible';
@@ -51,9 +53,12 @@ wave_selector.onchange = () => {
     // code_body.innerHTML = '';
     // Reset();
 
-    clearExplanation();
+    // clearExplanation();
 
     clearCodeTable();
+
+    clearExplanationList();
+
     start.innerHTML = 'Start';
 
     wave = wave_selector.value;
@@ -140,7 +145,7 @@ ok.onclick = () => {
 };
 
 start.onclick = function () {
-    clearExplanation();
+    clearExplanationList();
     switch (wave) {
         case 'impulse':
             impulseCodeTraverse();
@@ -303,23 +308,23 @@ function traverseInitalCode() {
     switch (code_row_no) {
         case 0:
             start.innerHTML = 'Next';
-            writeExplanation('clc --> clears the command window');
+            writeExplanation('clc --> clears the command window', 0);
             clearCommand();
             break;
         case 1:
             console.log(code_table.rows[code_row_no - 1].className);
             code_table.rows[code_row_no - 1].className = "";
-            writeExplanation('clear or clear all --> clears the workspace variables');
+            writeExplanation('clear or clear all --> clears the workspace variables', 0);
             clearWorkTable();
             break;
         case 2:
             code_table.rows[code_row_no - 1].className = "";
-            writeExplanation('close or close all --> closes the plot window');
+            writeExplanation('close or close all --> closes the plot window', 0);
             clearPlot();
             break;
         case 3:
             code_table.rows[code_row_no - 1].className = "";
-            writeExplanation('comment in MATLAB is written using % sign before the text');
+            writeExplanation('comment in MATLAB is written using % sign before the text', 0);
             break;
     }
     code_table.rows[code_row_no].className += "table-warning";
@@ -369,40 +374,53 @@ function enableInput(min, max, step, default_val) {
     val.innerHTML = slider.value;
 }
 
-function clearExplanation() {
-    explanation_body.innerHTML = '';
+function clearExplanationList() {
+    for (let i = 0; i < 4; i++) {
+        var list_element = explanation_list.children[i];
+        list_element.innerHTML = '&diams;';
+    }
 }
 
-function writeExplanation(message) {
-    // clearExplanation();
-    explanation_body.innerHTML += '<li><b>' + message + '</b></li>';
+function createEmptyExplanationList() {
+    for (let i = 0; i < 4; i++) {
+        var list_element = document.createElement('li');
+        list_element.className = 'list-group-item list-group-item-success';
+        list_element.innerHTML = '&diams;';
+        explanation_list.appendChild(list_element);
+    }
+}
+
+function writeExplanation(message, index) {
+    var list_element = explanation_list.children[index];
+    // list_element.className = 'list-group-item list-group-item-success text-danger';
+    list_element.innerHTML = '<b>&diams; ' + message + '</b>';
 }
 
 function writeGenExplanation(type) {
     // clearExplanation();
     switch (type) {
         case 'display':
-            writeExplanation('display(message) --> dispays the message in command window');
+            writeExplanation('display(message) --> dispays the message in command window', 0);
             break;
         case 'input':
-            writeExplanation('input() --> used for taking input from console while execution');
+            writeExplanation('input() --> used for taking input from console while execution', 0);
             break;
         case 'createArray':
-            writeExplanation('creating an array with lower_bound: step_size: upper_bound');
-            writeExplanation('size of array --> (upper_bound - lower_bound) / step_size');
+            writeExplanation('creating an array with lower_bound: step_size: upper_bound', 0);
+            writeExplanation('size of array --> (upper_bound - lower_bound) / step_size', 1);
             break;
         case 'createNoStepArr':
-            writeExplanation('array from lower_bound to upper_bound, step_size = 1');
-            writeExplanation('size of array --> (upper_bound - lower_bound)');
+            writeExplanation('array from lower_bound to upper_bound, step_size = 1', 0);
+            writeExplanation('size of array --> (upper_bound - lower_bound)', 1);
             break;
         case 'plot':
-            writeExplanation('plot(x, y) --> plots the graph with x & y corresponding to values on x-axis and y-axis');
-            writeExplanation('xlabel() --> displays a label for the x-axis');
-            writeExplanation('ylabel() --> displays a label for the y-axis');
-            writeExplanation('title() --> displays plot title');
+            writeExplanation('plot(x, y) --> plots the graph with x & y corresponding to values on x-axis and y-axis', 0);
+            writeExplanation('xlabel() --> displays a label for the x-axis', 1);
+            writeExplanation('ylabel() --> displays a label for the y-axis', 2);
+            writeExplanation('title() --> displays plot title', 3);
             break;
         case 'createY':
-            writeExplanation('creating an array of y values for all x values');
+            writeExplanation('creating an array of y values for all x values', 0);
             break;
     }
     // explanation_body.innerHTML += '<li><b>' + message + '</b></li>';

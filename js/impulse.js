@@ -71,7 +71,7 @@ function impulseCodeTraverse() {
                 break;
             case 5:
                 updateWorkspace('L', '2001', 'arr');
-                writeExplanation('length(array) --> returns total number of elements in array');
+                writeExplanation('length(array) --> returns total number of elements in array', 0);
                 break;
             case 6:
                 user_variable = 'delay';
@@ -89,8 +89,8 @@ function impulseCodeTraverse() {
                 break;
             case 9:
                 updateWorkspace('impulse', '1x2001', 'arr');
-                writeExplanation('zeros(1, N) --> creates an array of all 0\'s of size 1 x N');
-                writeExplanation('where N is the number of columns');
+                writeExplanation('zeros(1, N) --> creates an array of all 0\'s of size 1 x N', 0);
+                writeExplanation('where N is the number of columns', 1);
                 break;
             case 10:
                 writeGenExplanation('plot');
