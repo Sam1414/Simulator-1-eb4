@@ -67,6 +67,8 @@ function impulseCodeTraverse() {
         switch (code_row_no) {
             case 4:
                 updateWorkspace('t', '1x2001 double', 'arr');
+                writeExplanation('creating an array with lower_bound: step_size: upper_bound');
+                writeExplanation('size of array --> (upper_bound - lower_bound) / step_size');
                 break;
             case 5:
                 updateWorkspace('L', '2001', 'arr');
@@ -76,6 +78,8 @@ function impulseCodeTraverse() {
                 user_img = 'arr';
                 displayCommand('>> Enter delay (msec): ');
                 enableInput(-800, 800, 1, 0);
+                writeExplanation('input(\'message\') --> displays the message in comman window');
+                writeExplanation('var = input() --> stores the user input in the variable');
                 // workspace updated on OK pressing.
                 break;
             case 7:
@@ -86,6 +90,7 @@ function impulseCodeTraverse() {
                 break;
             case 9:
                 updateWorkspace('impulse', '1x2001', 'arr');
+                writeExplanation('zeros(1, N) --> creates an array of size 1 x N');
                 break;
             case 10:
                 start.innerHTML = 'End';
@@ -101,8 +106,7 @@ function impulseCodeTraverse() {
 
 function fillImpulseVariables() {
     // only one variable
-    delay = user_input;
-    console.log('updating impulse variables', delay);
+    delay = parseFloat(user_input);
 }
 
 function plotImpulse() {
@@ -110,7 +114,6 @@ function plotImpulse() {
 
     var lx = [];
     var ly = [];
-    delay = parseFloat(delay);
 
     for (let i = -999; i <= 1000; i += 1) {
         lx.push(i);

@@ -78,17 +78,20 @@
       /* height: min(75vw, 560px); */
     }
     .plot-card {
-      height: 725px;
+      height: 560px;
       width: 100%;
+    }
+    .explanation-card {
+      height: 160px;
+      /* flex-direction: row; */
     }
     .card-body {
       padding: 0.3rem;
       background-color: #c3f0ca;
 
     }
-    .exp-card {
-      height: 560px;
-      flex-direction: row;
+    .explanation-body {
+      height: fit-content;
     }
     .plot-body {
       height: fit-content;
@@ -242,12 +245,6 @@
 
         </div>
 
-        <!-- Explanation -->
-        <!-- <div class="card border-info exp-card">
-          <div class="card-header">Explanation</div>
-          <div id="explanation" class="card-body"></div>
-        </div> -->
-
 
         <!-- Column 3 -->
 
@@ -261,6 +258,13 @@
             </div>
             <div class="card-footer">Scroll to Zoom</div>
           </div>
+
+          <!-- Explanation -->
+          <div class="card border-info explanation-card">
+            <div class="card-header">Explanation</div>
+            <div id="explanation-body" class="card-body"></div>
+          </div>
+
         </div>
 
       </div>

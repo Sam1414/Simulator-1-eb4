@@ -92,7 +92,7 @@ function plotStep() {
     var lx = [];
     var ly = [];
 
-    for (let i = -1000.1; i < delay; i += 0.1) {
+    for (let i = -1000; i < delay; i += 0.1) {
         lx.push(i);
         ly.push(0);
     }

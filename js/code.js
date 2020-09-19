@@ -14,6 +14,7 @@ var code_div = document.getElementById('code-div');
 var code_body = document.getElementById('code-body');
 var code_card = document.getElementById('code-card');
 var plot_container = document.getElementById('plot-container');
+var explanation_body = document.getElementById('explanation-body');
 var header_div = document.getElementById('header-div');
 // var input_label = document.getElementById('input_value');
 var val = document.getElementById('value');
@@ -49,6 +50,8 @@ wave_selector.onchange = () => {
     // code_div.innerHTML = '';
     // code_body.innerHTML = '';
     // Reset();
+
+    clearExplanation();
 
     clearCodeTable();
     start.innerHTML = 'Start';
@@ -137,6 +140,7 @@ ok.onclick = () => {
 };
 
 start.onclick = function () {
+    clearExplanation();
     switch (wave) {
         case 'impulse':
             impulseCodeTraverse();
@@ -165,13 +169,13 @@ function clearCodeTable() {
     // clear code table --- just the contents.
     console.log('clearing code table');
     code_row_no = 0;
-    for (let i = 0; i < 14; i++) {
+    for (let i = 0; i < 17; i++) {
         var row, sno, line;
         row = code_table.rows[i];
         row.className = '';
         sno = row.cells[0];
         line = row.cells[1];
-        sno.innerHTML = '';
+        sno.innerHTML = (i + 1);
         line.innerHTML = '';
     }
 }
@@ -278,11 +282,17 @@ function writeInitialCode() {
                 break;
             case 1:
                 // clear all;
-                line.innerHTML = '<samp>clear <span style="color: blue">all;</span></samp>';
+                var r = 1 + Math.floor(Math.random() * 2); // random no 1 or 2;
+                var clear = '<samp>clear</samp>';
+                var clear_all = '<samp>clear <span style="color: blue">all;</span></samp>';
+                line.innerHTML = (r === 1) ? clear : clear_all;
                 break;
             case 2:
                 // close
-                line.innerHTML = '<samp>close;</samp>';
+                var r = 1 + Math.floor(Math.random() * 2); // random no 1 or 2;
+                var clos = '<samp>close</samp>';
+                var clos_all = '<samp>close <span style="color: blue">all;</span></samp>';
+                line.innerHTML = (r === 1) ? clos : clos_all;
                 break;
         }
     }
@@ -293,19 +303,23 @@ function traverseInitalCode() {
     switch (code_row_no) {
         case 0:
             start.innerHTML = 'Next';
+            writeExplanation('clc --> clears the command window');
             clearCommand();
             break;
         case 1:
             console.log(code_table.rows[code_row_no - 1].className);
             code_table.rows[code_row_no - 1].className = "";
+            writeExplanation('clear or clear all --> clears the workspace variables');
             clearWorkTable();
             break;
         case 2:
             code_table.rows[code_row_no - 1].className = "";
+            writeExplanation('close or close all --> closes the plot window');
             clearPlot();
             break;
         case 3:
             code_table.rows[code_row_no - 1].className = "";
+            writeExplanation('comment in MATLAB is written using % sign before the comment');
             break;
     }
     code_table.rows[code_row_no].className += "table-warning";
@@ -353,6 +367,15 @@ function enableInput(min, max, step, default_val) {
     input_div.style.visibility = 'visible';
     start.disabled = true;
     val.innerHTML = slider.value;
+}
+
+function clearExplanation() {
+    explanation_body.innerHTML = '';
+}
+
+function writeExplanation(message) {
+    // clearExplanation();
+    explanation_body.innerHTML += '<li><b>' + message + '</b></li>';
 }
 
 function plotFigure(lx, ly, plotTitle, xlabel, ylabel) {
