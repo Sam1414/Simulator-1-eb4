@@ -17,12 +17,16 @@ var plot_container = document.getElementById('plot-container');
 var explanation_body = document.getElementById('explanation-body');
 var explanation_list = document.getElementById('explanation-list');
 var header_div = document.getElementById('header-div');
+var buttons = document.getElementById('two-buttons');
+var input_footer = document.getElementById('input-footer');
 // var input_label = document.getElementById('input_value');
 var val = document.getElementById('value');
 // input_div.style.display = "none";
 input_div.style.visibility = 'hidden';
 // header_div.style.visibility = 'hidden';
 heading.style.visibility = 'hidden';
+buttons.style.visibility = 'hidden';
+input_footer.style.display = 'none';
 // heading.style.visibility = 'visible';
 
 var code_table = document.getElementById('code-table');
@@ -101,6 +105,7 @@ wave_selector.onchange = () => {
     }
     // header_div.visibility = 'inherit';
     heading.style.visibility = 'visible';
+    buttons.style.visibility = 'visible';
 }
 
 
@@ -111,6 +116,7 @@ slider.oninput = function () {
 ok.onclick = () => {
     user_input = slider.value;
     input_div.style.visibility = 'hidden';
+    input_footer.style.display = 'none';
     start.disabled = false;
     switch (wave) {
         case 'impulse':
@@ -200,6 +206,25 @@ function createEmptyCodeTable() {
     }
 }
 
+function updateWorkspace(n, v, i) {
+    work_row_no++;
+    var row, icon, name, value;
+    var img = document.createElement('img');
+    if (i === 'arr') {
+        img.src = arr_img;
+    }
+    else {
+        img.src = step_img;
+    }
+    row = work_table.rows[work_row_no];
+    icon = row.cells[0];
+    name = row.cells[1];
+    value = row.cells[2];
+    icon.appendChild(img);
+    name.innerHTML = n;
+    value.innerHTML = '<em style="color: blue;">' + v + '</em>';
+}
+
 function clearWorkTable() {
     console.log('clearing work table');
     work_row_no = 0;
@@ -207,9 +232,9 @@ function clearWorkTable() {
     for (let i = 1; i <= work_table_size; i++) {
         var row, icon, name, value;
         row = work_table.rows[i];
-        icon = row.cells[1];
-        name = row.cells[2];
-        value = row.cells[3];
+        icon = row.cells[0];
+        name = row.cells[1];
+        value = row.cells[2];
         icon.innerHTML = '';
         name.innerHTML = '';
         value.innerHTML = '';
@@ -221,11 +246,11 @@ function createEmptyWorkTable() {
     for (let i = 1; i <= work_table_size; i++) {
         var row, sno, img, name, value;
         row = work_table.insertRow(i);
-        sno = row.insertCell(0);
-        img = row.insertCell(1);
-        name = row.insertCell(2);
-        value = row.insertCell(3);
-        sno.innerHTML = (i);
+        // sno = row.insertCell(0);
+        img = row.insertCell(0);
+        name = row.insertCell(1);
+        value = row.insertCell(2);
+        // sno.innerHTML = (i); 
         img.innerHTML = '';
         name.innerHTML = '';
         value.innerHTML = '';
@@ -334,25 +359,6 @@ function traverseInitalCode() {
     code_row_no++;
 }
 
-function updateWorkspace(n, v, i) {
-    work_row_no++;
-    var row, icon, name, value;
-    var img = document.createElement('img');
-    if (i === 'arr') {
-        img.src = arr_img;
-    }
-    else {
-        img.src = step_img;
-    }
-    row = work_table.rows[work_row_no];
-    icon = row.cells[1];
-    name = row.cells[2];
-    value = row.cells[3];
-    icon.appendChild(img);
-    name.innerHTML = n;
-    value.innerHTML = '<em style="color: blue;">' + v + '</em>';
-}
-
 reset.onclick = Reset;
 
 function Reset() {
@@ -372,9 +378,10 @@ function enableInput(min, max, step, default_val) {
     slider.max = max;
     slider.step = step;
     slider.value = default_val;
-    input_div.style.visibility = 'visible';
     start.disabled = true;
     val.innerHTML = slider.value;
+    input_div.style.visibility = 'visible';
+    input_footer.style.display = 'initial';
 }
 
 function clearExplanationList() {

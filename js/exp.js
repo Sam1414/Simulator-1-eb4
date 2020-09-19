@@ -90,7 +90,7 @@ function expCodeTraverse() {
                 user_variable = 'n1';
                 user_img = 'arr';
                 displayCommand('>> Lower limit (in sec):');
-                enableInput(-10, -2, 0.5, -3);
+                enableInput(-5, -1, 0.5, -3);
                 writeGenExplanation('input');
                 // workspace updated on OK pressing.
                 break;
@@ -98,7 +98,7 @@ function expCodeTraverse() {
                 user_variable = 'n2';
                 user_img = 'arr';
                 displayCommand('>> Upper limit (in sec):');
-                enableInput(1, 5, 0.5, 1.5);
+                enableInput(0, 5, 0.5, 1.5);
                 writeGenExplanation('input');
                 // workspace updated on OK pressing.
                 break;
@@ -147,12 +147,12 @@ function fillExpVariables() {
 }
 
 function plotExp() {
-    console.log('called plot ramp');
+    console.log('called plot exponential');
 
     var lx = [];
     var ly = [];
 
-    for (let i = n1; i <= n2 + (0.1 / 2); i += 0.1) {
+    for (let i = n1; i <= n2 + (0.001 / 2); i += 0.001) {
         lx.push(i);
         ly.push(Math.exp(a * i));
     }
