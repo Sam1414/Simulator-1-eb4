@@ -36,7 +36,7 @@ function writeCosCode() {
                 line.innerHTML = '<samp>plot(t, y); </samp>';
                 break;
             case 11:
-                line.innerHTML = '<samp>title(\'Cos Function\'); </samp>';
+                line.innerHTML = '<samp>title(\'Cos Signal\'); </samp>';
                 break;
             case 12:
                 line.innerHTML = '<samp>xlabel(\'Time (sec)\'); </samp>';

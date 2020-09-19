@@ -42,7 +42,7 @@ function writeImpulseCode() {
                 line.innerHTML = '<samp>ylabel(\'Magnitude\');</samp>';
                 break;
             case 13:
-                line.innerHTML = '<samp>title(\'Unit Impulse Function\');</samp>';
+                line.innerHTML = '<samp>title(\'Unit Impulse Signal\');</samp>';
                 break;
         }
     }
@@ -127,5 +127,5 @@ function plotImpulse() {
         }
     }
 
-    plotFigure(lx, ly, 'Unit Impulse Function', 'Time (msec)', 'Magnitude');
+    plotFigure(lx, ly, 'Unit Impulse Signal', 'Time (msec)', 'Magnitude');
 }

@@ -34,7 +34,7 @@ function writeStepCode() {
                 line.innerHTML = '<samp>ylabel(\'Amplitude\');</samp>';
                 break;
             case 10:
-                line.innerHTML = '<samp>title(\'Unit step function\');</samp>';
+                line.innerHTML = '<samp>title(\'Unit step Signal\');</samp>';
                 break;
         }
     }
@@ -104,5 +104,5 @@ function plotStep() {
         ly.push(1);
     }
 
-    plotFigure(lx, ly, 'Step Signal', 'Time (sec)', 'Amplitude');
+    plotFigure(lx, ly, 'Unit Step Signal', 'Time (sec)', 'Amplitude');
 }

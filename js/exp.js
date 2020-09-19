@@ -53,7 +53,7 @@ function writeExpCode() {
                 line.innerHTML = '<samp>plot(t, y); </samp>';
                 break;
             case 11:
-                line.innerHTML = '<samp>title(\'Exponential Function\'); </samp>';
+                line.innerHTML = '<samp>title(\'Exponential Signal\'); </samp>';
                 break;
             case 12:
                 line.innerHTML = '<samp>xlabel(\'Time (sec)\'); </samp>';

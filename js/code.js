@@ -33,6 +33,9 @@ var wave;
 var code_row_no = 0;
 var work_row_no = 1;
 var command_row_no = 0;
+var code_table_size = 14;
+var work_table_size = 6;
+var command_table_size = 4;
 var code_length = 0;
 var user_input;
 var user_variable;
@@ -174,7 +177,7 @@ function clearCodeTable() {
     // clear code table --- just the contents.
     console.log('clearing code table');
     code_row_no = 0;
-    for (let i = 0; i < 17; i++) {
+    for (let i = 0; i < code_table_size; i++) {
         var row, sno, line;
         row = code_table.rows[i];
         row.className = '';
@@ -187,7 +190,7 @@ function clearCodeTable() {
 
 function createEmptyCodeTable() {
     code_row_no = 0;
-    for (let i = 0; i < 17; i++) {
+    for (let i = 0; i < code_table_size; i++) {
         var row, sno, line;
         row = code_table.insertRow(i);
         sno = row.insertCell(0);
@@ -201,7 +204,7 @@ function clearWorkTable() {
     console.log('clearing work table');
     work_row_no = 0;
     // clear work table --- just the contents.
-    for (let i = 1; i <= 8; i++) {
+    for (let i = 1; i <= work_table_size; i++) {
         var row, icon, name, value;
         row = work_table.rows[i];
         icon = row.cells[1];
@@ -215,7 +218,7 @@ function clearWorkTable() {
 
 function createEmptyWorkTable() {
     work_row_no = 0;
-    for (let i = 1; i <= 8; i++) {
+    for (let i = 1; i <= work_table_size; i++) {
         var row, sno, img, name, value;
         row = work_table.insertRow(i);
         sno = row.insertCell(0);
@@ -233,7 +236,7 @@ function clearCommand() {
     console.log('clearing command table');
     command_row_no = 0;
     // clear command table --- just the contents.
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < command_table_size; i++) {
         var row, col1, col2;
         row = command_table.rows[i];
         col1 = row.cells[0];
@@ -246,7 +249,7 @@ function clearCommand() {
 
 function createEmptyCommandTable() {
     command_row_no = 0;
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < command_table_size; i++) {
         var row, col1, col2;
         row = command_table.insertRow(i);
         col1 = row.insertCell(0);
@@ -384,7 +387,7 @@ function clearExplanationList() {
 function createEmptyExplanationList() {
     for (let i = 0; i < 4; i++) {
         var list_element = document.createElement('li');
-        list_element.className = 'list-group-item list-group-item-success';
+        list_element.className = 'list-group-item list-group-item-success p-1';
         list_element.innerHTML = '&diams;';
         explanation_list.appendChild(list_element);
     }
@@ -407,11 +410,11 @@ function writeGenExplanation(type) {
             break;
         case 'createArray':
             writeExplanation('creating an array with lower_bound: step_size: upper_bound', 0);
-            writeExplanation('size of array --> (upper_bound - lower_bound) / step_size', 1);
+            writeExplanation('size of array --> ((upper_bound - lower_bound) / step_size) + 1', 1);
             break;
         case 'createNoStepArr':
             writeExplanation('array from lower_bound to upper_bound, step_size = 1', 0);
-            writeExplanation('size of array --> (upper_bound - lower_bound)', 1);
+            writeExplanation('size of array --> (upper_bound - lower_bound) + 1', 1);
             break;
         case 'plot':
             writeExplanation('plot(x, y) --> plots the graph with x & y corresponding to values on x-axis and y-axis', 0);
@@ -421,6 +424,9 @@ function writeGenExplanation(type) {
             break;
         case 'createY':
             writeExplanation('creating an array of y values for all x values', 0);
+            break;
+        case 'createNoStepArr':
+            writeExplanation('Creates an array that starts from n1 and goes upto n2 with default step size equal to 1');
             break;
     }
     // explanation_body.innerHTML += '<li><b>' + message + '</b></li>';

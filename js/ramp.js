@@ -33,7 +33,7 @@ function writeRampCode() {
                 line.innerHTML = '<samp>plot(t,x);</samp>';
                 break;
             case 10:
-                line.innerHTML = '<samp>title(\'Unit Ramp Function\')</samp>';
+                line.innerHTML = '<samp>title(\'Ramp Signal\')</samp>';
                 break;
             case 11:
                 line.innerHTML = '<samp>xlabel(\'Time (Sec)\');</samp>';
