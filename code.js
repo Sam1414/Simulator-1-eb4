@@ -11,13 +11,14 @@ var selected_wave = document.getElementById('selected_wave');
 var heading = document.getElementById('heading');
 // var code_frame = document.getElementById('code-frame');
 var code_div = document.getElementById('code-div');
+var code_body = document.getElementById('code-body');
 // var input_label = document.getElementById('input_value');
 var val = document.getElementById('value');
 input_div.style.display = "none";
 // heading.style.visibility = 'hidden';
 // input_div.style.visibility = 'hidden';
 
-code_div.style = 'font-size: clamp(12px, 1.2vw, 14px);';
+// code_div.style = 'font-size: clamp(12px, 1.2vw, 14px);';
 workspace.style = 'font-size: clamp(8px, 1.5vw, 14px);';
 command.style = 'font-size: clamp(10px, 1.5vw, 14px);';
 

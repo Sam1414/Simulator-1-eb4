@@ -1,196 +1,114 @@
-var t1, t2;
+var n1, n2;
 
 function writeRampCode() {
     console.log('writing ramp code');
     var row, sno, line;
 
-    var code_table = document.createElement('table');
-    code_table.className = 'table table-sm table-hover';
-    code_table.id = 'code';
-    code_table.style = 'font-size: clamp(10px, 1.5vw, 14px);';
-    // code_div.appendChild(code_table);
-
-    var col_grp = document.createElement('colgroup');
-    col_grp.innerHTML = '<col style="width: 1px; background-color: #C0C0C0;">';
-    code_table.appendChild(col_grp);
-
-    var tbody = document.createElement('tbody');
-    code_table.appendChild(tbody);
-
-    for (let i = 1; i <= 10; i++) {
-        row = code_table.insertRow(-1);
-        sno = row.insertCell(0);
-        line = row.insertCell(1);
-        sno.innerHTML = '' + i;
+    for (let i = 3; i < 13; i++) {
+        row = code_table.rows[i];
+        sno = row.cells[0];
+        line = row.cells[1];
+        sno.innerHTML = '' + (i + 1);
+        start.disabled = false;
         switch (i) {
-            case 1:
-                line.innerHTML = '<samp>clear <span style="color: blue">all</span>;</samp>';
-                break;
-            case 2:
-                line.innerHTML = '<samp> disp(\'Enter the time range for generating ramp function below:\')</samp>';
-                break;
             case 3:
-                line.innerHTML = '<samp>t1 = input(\'Lower limit (in Sec) = \');</samp>';
+                line.innerHTML = '<samp><span style="color: green">% Ramp Signal</span></samp>';
                 break;
             case 4:
-                line.innerHTML = '<samp>t2 = input(\'Upper limit (in Sec) = \');</samp>';
+                line.innerHTML = '<samp> disp(\'Enter the time range:\')</samp>';
                 break;
             case 5:
-                line.innerHTML = '<samp>t = t1 : t2;</samp>';
+                line.innerHTML = '<samp>n1 = input(\'Lower limit (in Sec) = \');</samp>';
                 break;
             case 6:
-                line.innerHTML = '<samp>x = t.*[t >= 0];</samp>';
+                line.innerHTML = '<samp>n2 = input(\'Upper limit (in Sec) = \');</samp>';
                 break;
             case 7:
-                line.innerHTML = '<samp>plot(t,x);</samp>';
+                line.innerHTML = '<samp>t = n1 : n2;</samp>';
                 break;
             case 8:
-                line.innerHTML = '<samp>title(\'Unit Ramp Function\')</samp>';
+                line.innerHTML = '<samp>x = t.*[t >= 0];</samp>';
                 break;
             case 9:
-                line.innerHTML = '<samp>xlabel(\'Time(Sec)\');</samp>';
+                line.innerHTML = '<samp>plot(t,x);</samp>';
                 break;
             case 10:
+                line.innerHTML = '<samp>title(\'Unit Ramp Function\')</samp>';
+                break;
+            case 11:
+                line.innerHTML = '<samp>xlabel(\'Time (Sec)\');</samp>';
+                break;
+            case 12:
                 line.innerHTML = '<samp>ylabel(\'Amplitude\'); </samp>';
                 break;
         }
     }
-
-    code_div.appendChild(code_table);
-    start.disabled = false;
 }
 
-function rampCodeHighlight() {
-    var code = document.getElementById('code');
-    if (code_row_no === 0) {
-        start.innerHTML = 'Next';
-        code.rows[code_row_no].className += "table-warning";
-        code_row_no++;
+function rampCodeTraverse() {
+    console.log('code row no', code_row_no);
+    if (code_row_no <= 3) {
+        traverseInitalCode();
     }
-    else if (code_row_no < 6 && code_row_no > 0) {
-        code.rows[code_row_no - 1].className = "";
-        code.rows[code_row_no].className += "table-warning";
-        code_row_no++;
-    }
-    else if (code_row_no === 6) {
-        start.innerHTML = 'End';
-        code.rows[code_row_no - 1].className = "";
-        code.rows[code_row_no++].className += "table-warning";
-        code.rows[code_row_no++].className += "table-warning";
-        code.rows[code_row_no++].className += "table-warning";
-        code.rows[code_row_no].className += "table-warning";
-        plotRamp();
-    }
-    else if (code_row_no > 6) {
-        code.rows[code_row_no--].className = "";
-        code.rows[code_row_no--].className = "";
-        code.rows[code_row_no--].className = "";
-        code.rows[code_row_no].className = "";
+    else if (code_row_no > 9) {
+        code_table.rows[--code_row_no].className = "";
+        code_table.rows[--code_row_no].className = "";
+        code_table.rows[--code_row_no].className = "";
+        code_table.rows[--code_row_no].className = "";
         start.disabled = true;
         reset.disabled = false;
     }
-}
-
-function updateRampWork() {
-    var row, icon, name, value;
-    switch (code_row_no) {
-        case 0:
-            while (workspace.rows.length > 1) {
-                workspace.deleteRow(1);
-            }
-            break;
-        case 1:
-            var row, cursor, mesg;
-            row = command.insertRow(-1);
-            if (command_row_no > 0) {
-                command.rows[command_row_no - 1].cells[0].innerHTML = '';
-            }
-            cursor = row.insertCell(0);
-            mesg = row.insertCell(1);
-            cursor.innerHTML = '<em>f(x)</em>';
-            cursor.style = 'width: 1px;'
-            mesg.innerHTML = '>> Enter the time range for generating ramp function below: ';
-            command_row_no++;
-            break;
-        case 2:
-            user_variable = 't1';
-            enableInput('>> Lower limit (in sec): ', -50, -5, 1, -20);
-            break;
-        case 3:
-            user_variable = 't2';
-            enableInput('>> Upper limit (in sec): ', 5, 50, 1, 20);
-            break;
-        case 4:
-            row = workspace.insertRow(-1);
-            icon = row.insertCell(0);
-            name = row.insertCell(1);
-            value = row.insertCell(2);
-            icon.innerHTML = '<div></div>';
-            var img = document.createElement('img');
-            img.src = arr_img;
-            icon.appendChild(img);
-            name.innerHTML = 't';
-            var dim = Math.abs(parseFloat(t1)) + Math.abs(parseFloat(t2)) + 1;
-            value.innerHTML = '<div class="text-primary"><em>1x' + dim + ' double</em></div>';
-            break;
-        case 5:
-            row = workspace.insertRow(-1);
-            icon = row.insertCell(0);
-            name = row.insertCell(1);
-            value = row.insertCell(2);
-            icon.innerHTML = '<div></div>';
-            var img = document.createElement('img');
-            img.src = arr_img;
-            icon.appendChild(img);
-            name.innerHTML = 'x';
-            var dim = Math.abs(parseFloat(t1)) + Math.abs(parseFloat(t2)) + 1;
-            value.innerHTML = '<div class="text-primary"><em>1x' + dim + ' double</em></div>';
-            break;
+    else {
+        code_table.rows[code_row_no - 1].className = "";
+        code_table.rows[code_row_no].className += "table-warning";
+        switch (code_row_no) {
+            case 4:
+                displayCommand('>> Enter the time range:');
+                break;
+            case 5:
+                user_variable = 'n1';
+                user_img = 'arr';
+                displayCommand('>> Lower limit (in sec):');
+                enableInput(-50, -5, 1, -20);
+                // workspace updated on OK pressing.
+                break;
+            case 6:
+                user_variable = 'n2';
+                user_img = 'arr';
+                displayCommand('>> Upper limit (in sec):');
+                enableInput(5, 50, 1, 20);
+                // workspace updated on OK pressing.
+                break;
+            case 7:
+                var dim = Math.abs(n1) + Math.abs(n2) + 1;
+                updateWorkspace('t', '1x' + dim + ' double', 'arr');
+                break;
+            case 8:
+                var dim = Math.abs(n1) + Math.abs(n2) + 1;
+                updateWorkspace('x', '1x' + dim + ' double', 'arr');
+                break;
+            case 9:
+                start.innerHTML = 'End';
+                code_table.rows[++code_row_no].className += "table-warning";
+                code_table.rows[++code_row_no].className += "table-warning";
+                code_table.rows[++code_row_no].className += "table-warning";
+                plotRamp();
+                break;
+        }
+        code_row_no++;
     }
 }
 
-function userUpdateRampWork(user_variable, user_input, code_row_no) {
-    var row, icon, name, value;
-
-    if (code_row_no - 1 === 2) {
-
-        t1 = user_input;
-
-        command.rows[command_row_no - 1].cells[0].style = 'width: 1px;';
-        command.rows[command_row_no - 1].cells[1].innerHTML += user_input;
-
-        row = workspace.insertRow(-1);
-        icon = row.insertCell(0);
-        name = row.insertCell(1);
-        value = row.insertCell(2);
-        var img = document.createElement('img');
-        img.src = arr_img;
-        icon.appendChild(img);
-        name.innerHTML = user_variable;
-        value.innerHTML = '<div class="text-primary"><em>' + user_input + '</em></div>';
-    }
-    else if (code_row_no - 1 === 3) {
-
-        t2 = user_input;
-
-        command.rows[command_row_no - 1].cells[0].style = 'width: 1px;';
-        command.rows[command_row_no - 1].cells[1].innerHTML += user_input;
-
-        row = workspace.insertRow(-1);
-        icon = row.insertCell(0);
-        name = row.insertCell(1);
-        value = row.insertCell(2);
-        var img = document.createElement('img');
-        img.src = arr_img;
-        icon.appendChild(img);
-        name.innerHTML = user_variable;
-        value.innerHTML = '<div class="text-primary"><em>' + user_input + '</em></div>';
+function fillRampVariables() {
+    switch (user_variable) {
+        case 'n1':
+            n1 = parseFloat(user_input);
+            break;
+        case 'n2':
+            n2 = parseFloat(user_input);
+            break;
     }
 }
-
-
-var isPlotted;
-var plot_container = document.getElementById('plot-container');
 
 function plotRamp() {
     console.log('called plot ramp');
@@ -198,12 +116,9 @@ function plotRamp() {
     var lx = [];
     var ly = [];
 
-    t1 = parseFloat(t1);
-    t2 = parseFloat(t2);
-    for (let i = t1; i <= t2; i++) {
+    for (let i = n1; i <= n2; i++) {
         lx.push(i);
         if (i <= 0) {
-            console.log('pushed 0');
             ly.push(0);
         }
         else {
@@ -211,38 +126,5 @@ function plotRamp() {
         }
     }
 
-    var trace1 = {
-        x: lx,
-        y: ly,
-        type: 'line',
-        line: {
-            color: '#red'
-        }
-    };
-
-    var data = [trace1];
-
-    var layout = {
-        title: 'Unit Ramp Function',
-        xaxis: {
-            title: 'Time (sec)',
-            showspikes: true,
-        },
-        yaxis: {
-            title: 'Amplitude',
-            showspikes: true,
-        },
-        plot_bgcolor: '#c3f0ca',
-        margin: {
-            l: 70,
-            r: 10,
-            t: 90,
-            b: 70,
-        },
-    };
-
-    isPlotted = true;
-    console.log('isPlotted', isPlotted);
-
-    Plotly.newPlot('plot-container', data, layout, config);
+    plotFigure(lx, ly, 'Ramp Signal', 'Time (sec)', 'Amplitude');
 }

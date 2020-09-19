@@ -1,21 +1,25 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
   <link rel="stylesheet" href="css/styles.css">
   <link rel="apple-touch-icon" sizes="512x512" href="images/android-chrome-512x512.png">
   <link rel="apple-touch-icon" sizes="192x192" href="images/android-chrome-192x192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+
   <title>Basic Signal Generation</title>
+
   <script src="js/plot.js"></script>
+
   <style media="screen">
     .jumbotron {
       background-color: #0c9463;
-      margin-bottom: 6px;
       /* background-color: #e84a5f; */
     }
     .bg-color {
@@ -25,6 +29,7 @@
       padding-left: 5px;
       padding-right: 5px;
       font-size: clamp(10px, 1vw, 14px);
+      background-color: #e8e8e8;
     }
     .input-group-text {
       color: white;
@@ -34,42 +39,59 @@
       /* background-color: #018383; */
       background-color: #e84a5f;
       /* background-color: #0c9463; */
-      margin-bottom: 6px!important;
     }
     .card-header {
       color: white;
       background-color: #132743;
     }
     .command {
-      height: min(38vw, 275px);
+      height: min(38vw, 270px);
       margin-bottom: 4px;
     }
     .workspace {
       height: min(47vw, 300px);
     }
     .code {
-      height: min(75vw, 580px);
+      height: min(75vw, 560px);
       margin-bottom: 4px;
+      /* width: max(50vw, 250px); */
+      /* min-width: 300px; */
     }
     .plot {
-      height: 580px;
+      height: 560px;
+    }
+    .card {
+      margin: 5px;
     }
     .command-card {
-      height: min(38vw, 275px);
+      /* height: min(38vw, 270px); */
+      height: fit-content;
     }
     .workspace-card {
-      height: min(47vw, 300px);
+      /* height: 300px; */
+      height: fit-content;
+      /* height: min(47vw, 300px); */
     }
     .code-card {
-      height: min(75vw, 580px);
+      height: fit-content;
+      /* height: min(75vw, 560px); */
     }
     .plot-card {
-      height: 580px;
+      height: 560px;
+      width: 100%;
     }
     .card-body {
       padding: 0.3rem;
       background-color: #c3f0ca;
 
+    }
+    .exp-card {
+      height: 560px;
+      flex-direction: row;
+    }
+    .plot-body {
+      height: fit-content;
+      width: fit-content;
     }
     /* card group aka PRIMARY */
     .card:hover {
@@ -117,23 +139,24 @@
 
     <!-- Header -->
 
-    <div class="page-header text-center text-white"><h1><p id="heading" class="font-weight-light py-2"></p></h1></div>
+    <div id="header-div" class="page-header text-center text-white"><h1><p id="heading" class="font-weight-light py-2"></p></h1></div>
 
     <div class="container-fluid">
-      <!-- Main Row 1 -->
+
+      <!-- Row 1 -->
       <div class="row no-gutters">
 
         <!-- Column 1 -->
-        <div id="col-1" class="col" style="padding-top: 0px">
+        <div id="column-1" class="col-lg-3 col-md-5" style="padding-top: 0px">
 
           <!-- Command Window -->
-          <div class="col card-group command">
+          <!-- <div class="col card-group command"> -->
             <div class="card border-info command-card">
               <div class="card-header">Command Window</div>
               <div class="card-body">
                 <div class="table-responsive">
-                  <table class="table table-borderless table-sm">
-                    <colgroup><col style="width: 1px; background-color: #C0C0C0;"></col></colgroup>
+                  <table id="command-table" class="table table-borderless table-sm">
+                    <col style="width: min-content; background-color: #C0C0C0;"></col>
                     <tbody id="command">
                     </tbody>
                   </table>
@@ -141,46 +164,68 @@
                 <div id="input_div" class="justify-content-around input-group">
                   <label id="input_value" for="formControlRange" class="mt-2">Enter Your Input: <span id="value"></span></label>
                   <input id="user_input" class="form-control-range w-50" type="range"/>
-                  <button type="button" id="input_button" class="btn btn-danger">Ok</button>
+                  <button type="button" id="input_button" class="btn btn-danger btn-sm">Ok</button>
                 </div>
               </div>
             </div>
-          </div>
+          <!-- </div> -->
 
           <!-- Workspace -->
-          <div class="col card-group workspace">
+          <!-- <div class="col card-group workspace"> -->
             <div class="card border-info workspace-card">
               <div class="card-header">Workspace</div>
               <div class="card-body">
                 <div class="table-responsive">
-                  <table class="table table-sm table-striped">
-                    <!-- <colgroup><col style="width: 1px; background-color: #C0C0C0;"></col></colgroup> -->
+                  <table id="work-table" class="table table-striped table-sm">
+                    <!-- <colgroup><col style="width: 1px;"></col></colgroup> -->
+                    <col style="width: 1px; background-color: #C0C0C0;"></col>
                     <thead id="workspace" class="thead-light">
                       <tr>
+                        <th style="width: 1px;"></th>
                         <th style="width: 1px;"></th>
                         <th>Name</th>
                         <th>Value</th>
                       </tr>
                     </thead>
-                    <tbody>
-                    </tbody>
+                    <tbody></tbody>
                   </table>
                 </div>
               </div>
             </div>
-          </div>
+          <!-- </div> -->
 
         </div>
 
         <!-- Column 2 -->
-        <div id="col-1" class="col-md">
+        <div id="column-2" class="col-lg-4 col-md-7">
 
           <!-- Code Window -->
-          <div class="col card-group code">
-            <div class="card border-info code-card">
+          <!-- <div class="col card-group code"> -->
+            <div id="code-card" class="card border-info code-card">
               <div class="card-header">Code Window</div>
-              <div class="card-body" style="overflow: scroll;">
-                <div id="code-div" class="table-responsive"></div>
+              <div id="code-body" class="card-body" style="min-block-size: fit-content;">
+                <div id="code-div" class="table-responsive">
+                  <table id="code-table" class="table table-sm table-hover">
+                    <col style="width: 1px; background-color: #C0C0C0;"></col>
+                    <tbody></tbody>
+                  <!--  <tbody>
+                      <tr><td></td><td></td></tr>
+                      <tr><td></td><td></td></tr>
+                      <tr><td></td><td></td></tr>
+                      <tr><td></td><td></td></tr>
+                      <tr><td></td><td></td></tr>
+                      <tr><td></td><td></td></tr>
+                      <tr><td></td><td></td></tr>
+                      <tr><td></td><td></td></tr>
+                      <tr><td></td><td></td></tr>
+                      <tr><td></td><td></td></tr>
+                      <tr><td></td><td></td></tr>
+                      <tr><td></td><td></td></tr>
+                      <tr><td></td><td></td></tr>
+                      <tr><td></td><td></td></tr>
+                    </tbody>  -->
+                  </table>
+                </div>
               </div>
               <div class="card-footer bg-transparent border-success">
                   Click Here to Start Code Execution:
@@ -188,30 +233,37 @@
                 <button id="reset" type="button" class="btn btn-info ml-2">Reset</button>
               </div>
             </div>
-          </div>
+          <!-- </div> -->
 
         </div>
 
+        <!-- Explanation -->
+        <!-- <div class="card border-info exp-card">
+          <div class="card-header">Explanation</div>
+          <div id="explanation" class="card-body"></div>
+        </div> -->
+
+
         <!-- Column 3 -->
-        <div class="col-lg">
 
-          <!-- Plot Window -->
-          <div class="col card-group plot">
-            <div class="card border-info plot-card">
-              <div class="card-header">Plot</div>
-              <div class="card-body">
-                <div id="plot-container" class="card border-dark" style="box-sizing: content-box;"></div>
-                <!-- <div id="pt-container" style="box-sizing: content-box; overflow: hidden;"></div> -->
-              </div>
-              <div class="card-footer">Scroll to Zoom</div>
+        <div id="column-3" class="col-lg-5">
+        <!-- Plot Window -->
+        <!-- <div class="col card-group plot"> -->
+          <div class="card border-info plot-card">
+            <div class="card-header">Plot</div>
+            <div id="plot-body" class="card-body" style="box-sizing: content-box;">
+              <div id="plot-container" class="border-dark" style="box-sizing: content-box;"></div>
             </div>
+            <div class="card-footer">Scroll to Zoom</div>
           </div>
-
         </div>
 
       </div>
 
-      <div class="row p-4"></div>
+      <!-- Row 2 -->
+      <!-- <div id="row2" class="row" style="width: 100vw;"> -->
+
+      <!-- </div> -->
 
     </div>
 
