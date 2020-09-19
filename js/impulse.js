@@ -67,19 +67,18 @@ function impulseCodeTraverse() {
         switch (code_row_no) {
             case 4:
                 updateWorkspace('t', '1x2001 double', 'arr');
-                writeExplanation('creating an array with lower_bound: step_size: upper_bound');
-                writeExplanation('size of array --> (upper_bound - lower_bound) / step_size');
+                writeGenExplanation('createArray');
                 break;
             case 5:
                 updateWorkspace('L', '2001', 'arr');
+                writeExplanation('length(array) --> calculates the length of array');
                 break;
             case 6:
                 user_variable = 'delay';
                 user_img = 'arr';
                 displayCommand('>> Enter delay (msec): ');
                 enableInput(-800, 800, 1, 0);
-                writeExplanation('input(\'message\') --> displays the message in comman window');
-                writeExplanation('var = input() --> stores the user input in the variable');
+                writeGenExplanation('input');
                 // workspace updated on OK pressing.
                 break;
             case 7:
@@ -93,6 +92,7 @@ function impulseCodeTraverse() {
                 writeExplanation('zeros(1, N) --> creates an array of size 1 x N');
                 break;
             case 10:
+                writeGenExplanation('plot');
                 start.innerHTML = 'End';
                 code_table.rows[++code_row_no].className += "table-warning";
                 code_table.rows[++code_row_no].className += "table-warning";

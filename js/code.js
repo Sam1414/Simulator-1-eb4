@@ -378,6 +378,37 @@ function writeExplanation(message) {
     explanation_body.innerHTML += '<li><b>' + message + '</b></li>';
 }
 
+function writeGenExplanation(type) {
+    // clearExplanation();
+    switch (type) {
+        case 'display':
+            writeExplanation('display(message) --> dispays the message on command window');
+            break;
+        case 'input':
+            writeExplanation('input(\'message\') --> displays the message in comman window');
+            writeExplanation('var = input() --> stores the user input in the variable');
+            break;
+        case 'createArray':
+            writeExplanation('creating an array with lower_bound: step_size: upper_bound');
+            writeExplanation('size of array --> (upper_bound - lower_bound) / step_size');
+            break;
+        case 'createNoStepArr':
+            writeExplanation('array from lower_bound to upper_bound, step_size = 1');
+            writeExplanation('size of array --> (upper_bound - lower_bound)');
+            break;
+        case 'plot':
+            writeExplanation('plot(x, y) --> x & y corresponds to values x-axis and y-axis and plots the graph');
+            writeExplanation('xlabel() --> displays a label for the x-axis');
+            writeExplanation('ylabel() --> displays a label for the y-axis');
+            writeExplanation('title() --> displays plot title');
+            break;
+        case 'createY':
+            writeExplanation('creating an array of y values for all x values');
+            break;
+    }
+    // explanation_body.innerHTML += '<li><b>' + message + '</b></li>';
+}
+
 function plotFigure(lx, ly, plotTitle, xlabel, ylabel) {
     var trace = {
         x: lx,
@@ -412,7 +443,7 @@ function plotFigure(lx, ly, plotTitle, xlabel, ylabel) {
     // Plot Configurations
     var config = {
         responsive: true,
-        scrollZoom: true,
+        // scrollZoom: true,
         displayModeBar: true,
         displaylogo: false,
         modeBarButtonsToRemove: ['resetScale2d'],

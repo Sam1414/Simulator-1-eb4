@@ -82,7 +82,8 @@
       width: 100%;
     }
     .explanation-card {
-      height: 160px;
+      height: 260px;
+      /* min-height: max-content; */
       /* flex-direction: row; */
     }
     .card-body {
@@ -92,6 +93,7 @@
     }
     .explanation-body {
       height: fit-content;
+      width: fit-content;
     }
     .plot-body {
       height: fit-content;
@@ -133,7 +135,7 @@
                 <option value="cos">Cosine Signal</option>
                 <option value="impulse">Unit Impulse Signal</option>
                 <option value="step">Unit Step Signal</option>
-                <option value="ramp">Unit Ramp Signal</option>
+                <option value="ramp">Ramp Signal</option>
                 <option value="exp">Exponential Signal</option>
               </select>
             </div>
@@ -249,6 +251,13 @@
         <!-- Column 3 -->
 
         <div id="column-3" class="col-lg-5">
+
+          <!-- Explanation -->
+          <div class="card border-info explanation-card">
+            <div class="card-header">Explanation</div>
+            <div id="explanation-body" class="card-body"></div>
+          </div>
+
         <!-- Plot Window -->
         <!-- <div class="col card-group plot"> -->
           <div class="card border-info plot-card">
@@ -256,13 +265,7 @@
             <div id="plot-body" class="card-body" style="box-sizing: content-box;">
               <div id="plot-container" class="border-dark" style="box-sizing: content-box;"></div>
             </div>
-            <div class="card-footer">Scroll to Zoom</div>
-          </div>
-
-          <!-- Explanation -->
-          <div class="card border-info explanation-card">
-            <div class="card-header">Explanation</div>
-            <div id="explanation-body" class="card-body"></div>
+            <div class="card-footer">Use Mode Bar at top-right for graph interactions</div>
           </div>
 
         </div>

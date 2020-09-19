@@ -71,6 +71,7 @@ function cosCodeTraverse() {
                 user_img = 'arr';
                 displayCommand('>> Enter Amplitude: ');
                 enableInput(0, 1000, 1, 500);
+                writeGenExplanation('input');
                 // workspace updated on OK pressing.
                 break;
             case 5:
@@ -78,6 +79,7 @@ function cosCodeTraverse() {
                 user_img = 'arr';
                 displayCommand('>> Enter Frequency (in Hz): ');
                 enableInput(0, 1000, 1, 220);
+                writeGenExplanation('input');
                 // workspace updated on OK pressing.
                 break;
             case 6:
@@ -85,6 +87,7 @@ function cosCodeTraverse() {
                 user_img = 'arr';
                 displayCommand('>> Enter no.of cycle to generate: ');
                 enableInput(1, 20, 1, 2);
+                writeGenExplanation('input');
                 // workspace updated on OK pressing.
                 break;
             case 7:
@@ -99,6 +102,7 @@ function cosCodeTraverse() {
                     var dim = N * 100 + 1;
                     updateWorkspace('t', '1x' + dim + ' double', 'arr');
                 }
+                writeGenExplanation('createArray');
                 break;
             case 9:
                 if (f === 0) {
@@ -108,8 +112,10 @@ function cosCodeTraverse() {
                     var dim = N * 100 + 1;
                     updateWorkspace('y', '1x' + dim + ' double', 'arr');
                 }
+                writeGenExplanation('createY');
                 break;
             case 10:
+                writeGenExplanation('plot');
                 start.innerHTML = 'End';
                 code_table.rows[++code_row_no].className += "table-warning";
                 code_table.rows[++code_row_no].className += "table-warning";

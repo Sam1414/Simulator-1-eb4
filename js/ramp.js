@@ -64,12 +64,14 @@ function rampCodeTraverse() {
         switch (code_row_no) {
             case 4:
                 displayCommand('>> Enter the time range:');
+                writeGenExplanation('display');
                 break;
             case 5:
                 user_variable = 'n1';
                 user_img = 'arr';
                 displayCommand('>> Lower limit (in sec):');
                 enableInput(-50, -5, 1, -20);
+                writeGenExplanation('input');
                 // workspace updated on OK pressing.
                 break;
             case 6:
@@ -77,17 +79,20 @@ function rampCodeTraverse() {
                 user_img = 'arr';
                 displayCommand('>> Upper limit (in sec):');
                 enableInput(5, 50, 1, 20);
+                writeGenExplanation('input');
                 // workspace updated on OK pressing.
                 break;
             case 7:
                 var dim = Math.abs(n1) + Math.abs(n2) + 1;
                 updateWorkspace('t', '1x' + dim + ' double', 'arr');
+                writeExplanation('createNoStepArr');
                 break;
             case 8:
                 var dim = Math.abs(n1) + Math.abs(n2) + 1;
                 updateWorkspace('x', '1x' + dim + ' double', 'arr');
                 break;
             case 9:
+                writeGenExplanation('plot');
                 start.innerHTML = 'End';
                 code_table.rows[++code_row_no].className += "table-warning";
                 code_table.rows[++code_row_no].className += "table-warning";

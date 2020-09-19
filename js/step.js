@@ -59,18 +59,21 @@ function stepCodeTraverse() {
         switch (code_row_no) {
             case 4:
                 updateWorkspace('t', '1x20001 double', 'arr');
+                writeGenExplanation('createArray');
                 break;
             case 5:
                 user_variable = 'delay';
                 user_img = 'arr';
                 displayCommand('>> Enter delay (in msec): ');
                 enableInput(-800, 800, 1, 0);
+                writeGenExplanation('input');
                 // workspace updated on OK pressing.
                 break;
             case 6:
                 updateWorkspace('step', '1x20001 logical', 'step');
                 break;
             case 7:
+                writeGenExplanation('plot');
                 start.innerHTML = 'End';
                 code_table.rows[++code_row_no].className += "table-warning";
                 code_table.rows[++code_row_no].className += "table-warning";

@@ -84,12 +84,14 @@ function expCodeTraverse() {
         switch (code_row_no) {
             case 4:
                 displayCommand('>> Enter the time range:');
+                writeGenExplanation('display');
                 break;
             case 5:
                 user_variable = 'n1';
                 user_img = 'arr';
                 displayCommand('>> Lower limit (in sec):');
                 enableInput(-10, -2, 0.5, -3);
+                writeGenExplanation('input');
                 // workspace updated on OK pressing.
                 break;
             case 6:
@@ -97,23 +99,28 @@ function expCodeTraverse() {
                 user_img = 'arr';
                 displayCommand('>> Upper limit (in sec):');
                 enableInput(1, 5, 0.5, 1.5);
+                writeGenExplanation('input');
                 // workspace updated on OK pressing.
                 break;
             case 7:
                 var dim = (Math.abs(n1) + Math.abs(n2)) * 1000 + 1;
                 updateWorkspace('t', '1x' + dim + ' double', 'arr');
+                writeGenExplanation('createArray');
                 break;
             case 8:
                 user_variable = 'a';
                 displayCommand('>> Enter a for function exp(a * t): ');
                 enableInput(-5, 5, 1, 1);
+                writeGenExplanation('input');
                 // workspace updated on OK pressing.
                 break;
             case 9:
                 var dim = (Math.abs(n1) + Math.abs(n2)) * 1000 + 1;
                 updateWorkspace('y', '1x' + dim + ' double', 'arr');
+                writeGenExplanation('createY');
                 break;
             case 10:
+                writeGenExplanation('plot');
                 start.innerHTML = 'End';
                 code_table.rows[++code_row_no].className += "table-warning";
                 code_table.rows[++code_row_no].className += "table-warning";
