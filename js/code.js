@@ -382,11 +382,10 @@ function writeGenExplanation(type) {
     // clearExplanation();
     switch (type) {
         case 'display':
-            writeExplanation('display(message) --> dispays the message on command window');
+            writeExplanation('display(message) --> dispays the message in command window');
             break;
         case 'input':
-            writeExplanation('input(\'message\') --> displays the message in comman window');
-            writeExplanation('var = input() --> stores the user input in the variable');
+            writeExplanation('input() --> used for taking input from console while execution');
             break;
         case 'createArray':
             writeExplanation('creating an array with lower_bound: step_size: upper_bound');
