@@ -319,7 +319,7 @@ function traverseInitalCode() {
             break;
         case 3:
             code_table.rows[code_row_no - 1].className = "";
-            writeExplanation('comment in MATLAB is written using % sign before the comment');
+            writeExplanation('comment in MATLAB is written using % sign before the text');
             break;
     }
     code_table.rows[code_row_no].className += "table-warning";
@@ -396,7 +396,7 @@ function writeGenExplanation(type) {
             writeExplanation('size of array --> (upper_bound - lower_bound)');
             break;
         case 'plot':
-            writeExplanation('plot(x, y) --> x & y corresponds to values x-axis and y-axis and plots the graph');
+            writeExplanation('plot(x, y) --> plots the graph with x & y corresponding to values on x-axis and y-axis');
             writeExplanation('xlabel() --> displays a label for the x-axis');
             writeExplanation('ylabel() --> displays a label for the y-axis');
             writeExplanation('title() --> displays plot title');
