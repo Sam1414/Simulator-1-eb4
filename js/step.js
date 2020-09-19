@@ -83,7 +83,7 @@ function stepCodeTraverse() {
 }
 
 function fillStepVariables() {
-    delay = user_input;
+    delay = parseFloat(user_input);
 }
 
 function plotStep() {
