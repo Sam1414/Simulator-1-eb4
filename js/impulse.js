@@ -3,6 +3,7 @@ var delay;
 function writeImpulseCode() {
     console.log('writing impulse code');
     var row, sno, line;
+    start.disabled = false;
 
     for (let i = 3; i < 14; i++) {
         row = code_table.rows[i];
@@ -20,7 +21,7 @@ function writeImpulseCode() {
                 line.innerHTML = '<samp>L = length(t);</samp>';
                 break;
             case 6:
-                line.innerHTML = '<samp>delay = input(\'Enter the delay (in msec): \');</samp>';
+                line.innerHTML = '<samp>delay = input(\'Enter delay (in msec): \');</samp>';
                 break;
             case 7:
                 line.innerHTML = '<samp>n1 = (L - 1) / 2 + delay;</samp>'
@@ -45,8 +46,6 @@ function writeImpulseCode() {
                 break;
         }
     }
-    code_div.appendChild(code_table);
-    start.disabled = false;
 }
 
 function impulseCodeTraverse() {

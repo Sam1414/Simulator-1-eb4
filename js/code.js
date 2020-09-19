@@ -23,10 +23,6 @@ input_div.style.visibility = 'hidden';
 heading.style.visibility = 'hidden';
 // heading.style.visibility = 'visible';
 
-// code_div.style = 'font-size: clamp(12px, 1.2vw, 14px);';
-// workspace.style = 'font-size: clamp(8px, 1.5vw, 14px);';
-// command.style = 'font-size: clamp(10px, 1.5vw, 14px);';
-
 var code_table = document.getElementById('code-table');
 var work_table = document.getElementById('work-table');
 var command_table = document.getElementById('command-table');
@@ -88,9 +84,6 @@ wave_selector.onchange = () => {
             writeExpCode();
             break;
         default:
-            // heading.style.visibility = 'hidden';
-            // code_div.innerHTML = '';
-            // header_div.visibility = 'hidden';
             clearCodeTable();
             Reset();
             break;

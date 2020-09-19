@@ -19,7 +19,7 @@ function writeStepCode() {
                 line.innerHTML = '<samp>t = [-1 : 0.0001 : 1] * 1000;</samp>';
                 break;
             case 5:
-                line.innerHTML = '<samp>delay = input(\'Enter the delay (in msec): \');</samp>';
+                line.innerHTML = '<samp>delay = input(\'Enter delay (in msec): \');</samp>';
                 break;
             case 6:
                 line.innerHTML = '<samp>step = (t - delay) >= 0;</samp>';

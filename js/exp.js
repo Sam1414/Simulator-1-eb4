@@ -105,7 +105,7 @@ function expCodeTraverse() {
                 break;
             case 8:
                 user_variable = 'a';
-                displayCommand('>> Enter the value of a for function exp(a * t): ');
+                displayCommand('>> Enter a for function exp(a * t): ');
                 enableInput(-5, 5, 1, 1);
                 // workspace updated on OK pressing.
                 break;
