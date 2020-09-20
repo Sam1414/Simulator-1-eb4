@@ -85,7 +85,7 @@ function rampCodeTraverse() {
             case 7:
                 var dim = Math.abs(n1) + Math.abs(n2) + 1;
                 updateWorkspace('t', '1x' + dim + ' double', 'arr');
-                writeExplanation('createNoStepArr', 0);
+                writeGenExplanation('createNoStepArr', 0);
                 break;
             case 8:
                 var dim = Math.abs(n1) + Math.abs(n2) + 1;
