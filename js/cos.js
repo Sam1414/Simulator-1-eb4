@@ -121,6 +121,8 @@ function cosCodeTraverse() {
                 code_table.rows[++code_row_no].className += "table-warning";
                 code_table.rows[++code_row_no].className += "table-warning";
                 plotCos();
+                // var upper_limit = N * (1 / f);
+                // plotFunc(a + '* cos(2 * PI * ' + f + '* x)', 'Cosine Signal', 'Time (sec)', 'Amplitude', [0, upper_limit], [-a, a]);
                 break;
         }
         code_row_no++;

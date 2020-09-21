@@ -89,21 +89,38 @@ var height = plot_container.height;
 
 
 // Exponential Function
+var d = [];
 var a = 2;
 functionPlot({
     title: 'Exponential Signal',
     target: plot_container,
     width: width,
     height: height,
-    // disableZoom: true,
+    disableZoom: true,
     xAxis: {
         label: 'Time (sec)',
         domain: [-5, 5]
     },
     yAxis: {
-        label: 'Amplitude'
+        label: 'Amplitude',
     },
     data: [{
         fn: 'exp(' + a + ' * x)'
     }]
 });
+
+function plotFunc(fn, title, xlabel, ylabel, xdomain, ydomain) {
+    var xAxis = (xdomain === []) ? { label: xlabel } : { label: xlabel, domain: xdomain };
+    var yAxis = (ydomain === []) ? { label: ylabel } : { label: ylabel, domain: ydomain };
+    functionPlot({
+        title: title,
+        target: plot_container,
+        width: plot_width,
+        height: plot_height,
+        xAxis: xAxis,
+        yAxis: yAxis,
+        data: [{
+            fn: fn,
+        }],
+    });
+}

@@ -110,7 +110,7 @@ function expCodeTraverse() {
             case 8:
                 user_variable = 'a';
                 displayCommand('>> Enter a for function exp(a * t): ');
-                enableInput(-5, 5, 1, 1);
+                enableInput(-5, 5, 0.01, 1);
                 writeGenExplanation('input');
                 // workspace updated on OK pressing.
                 break;
@@ -126,6 +126,7 @@ function expCodeTraverse() {
                 code_table.rows[++code_row_no].className += "table-warning";
                 code_table.rows[++code_row_no].className += "table-warning";
                 plotExp();
+                // plotFunc('exp(' + a + ' * x)', 'Exponential Signal', 'Time (sec)', 'Amplitude', [n1, n2], [Math.exp(a * n1), Math.exp(a * n2)]);
                 break;
         }
         code_row_no++;

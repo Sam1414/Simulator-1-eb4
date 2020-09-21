@@ -3,10 +3,12 @@ var start = document.getElementById('start');
 var reset = document.getElementById('reset');
 var workspace = document.getElementById('workspace');
 var command = document.getElementById('command');
+var command_card = document.getElementById('command-card');
+var command_header = document.getElementById('command-header');
 var input_div = document.getElementById('input_div');
 var slider = document.getElementById('user_input');
 var ok = document.getElementById('input_button');
-var wave_selector = document.getElementById('wave_selector');
+var wave_selector = document.getElementById('wave-selector');
 var selected_wave = document.getElementById('selected_wave');
 var heading = document.getElementById('heading');
 // var code_frame = document.getElementById('code-frame');
@@ -46,6 +48,8 @@ var user_variable;
 var user_img;
 var arr_img = './images/array_low.jpg';
 var step_img = './images/step_low_1.jpg';
+var plot_width = plot_container.width;
+var plot_height = plot_container.height;
 
 start.disabled = true;
 reset.disabled = true;
@@ -54,6 +58,13 @@ createEmptyWorkTable();
 createEmptyCommandTable();
 createEmptyExplanationList();
 
+
+document.getElementById('title-div').scrollIntoView({
+    block: "start",
+    behavior: "smooth",
+});
+
+
 wave_selector.onchange = () => {
     // heading.style.visibility = 'visible';
     // code_div.innerHTML = '';
@@ -61,6 +72,7 @@ wave_selector.onchange = () => {
     // Reset();
 
     // clearExplanation();
+    code_card.scrollIntoView();
 
     clearCodeTable();
 
@@ -118,6 +130,14 @@ ok.onclick = () => {
     input_div.style.visibility = 'hidden';
     input_footer.style.display = 'none';
     start.disabled = false;
+
+    code_body.scrollIntoView(true);
+
+    // code_card.scrollIntoView({
+    //     block: "start",
+    //     behavior: "smooth",
+    // });
+
     switch (wave) {
         case 'impulse':
             updateWorkspace(user_variable, '' + user_input, user_img);
@@ -374,6 +394,12 @@ function clearPlot() {
 
 
 function enableInput(min, max, step, default_val) {
+    // command_header.scrollIntoView({
+    //     block: "start",
+    //     behavior: "smooth",
+    // });
+    command_header.scrollIntoView(true);
+    // scrollTo(input_div, input_div.offsetTop, 100);
     slider.min = min;
     slider.max = max;
     slider.step = step;
@@ -480,6 +506,8 @@ function plotFigure(lx, ly, plotTitle, xlabel, ylabel) {
     }
 
     Plotly.newPlot('plot-container', data, layout, config);
+
+    plot_container.scrollIntoView(true);
 }
 
 // window.onresize = () => {

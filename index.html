@@ -7,6 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/input_range_style.css">
   <link rel="apple-touch-icon" sizes="512x512" href="images/android-chrome-512x512.png">
   <link rel="apple-touch-icon" sizes="192x192" href="images/android-chrome-192x192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
@@ -16,7 +17,6 @@
   <title>Basic Signal Generation</title>
 
   <script src="js/plot.js"></script>
-  <!-- <script src="js/function-plot.js"></script> -->
 
   <style media="screen">
     .jumbotron {
@@ -177,6 +177,13 @@
       flex-grow: 1;
       padding: 0.5rem;
     }
+    /* Smooth scrolling IF user doesn't have a preference due to motion sensitivities */
+    @media screen and (prefers-reduced-motion: no-preference) {
+      html,
+      body {
+        scroll-behavior: smooth;
+      }
+    }
 }
   </style>
 
@@ -187,7 +194,7 @@
 
   <!-- Title -->
 
-    <div class="jumbotron py-3 mb-2 text-center text-white">
+    <div id="title-div" class="jumbotron py-3 mb-2 text-center text-white">
       <h1 class="display-4">Basic Signal Generation using MATLAB Codes</h1>
       <hr class="my-3">
       <div class="flex">
@@ -197,7 +204,7 @@
               <div class="input-group-prepend">
                 <label class="input-group-text" for="validatedInputGroupSelect">Basic Signals</label>
               </div>
-              <select id="wave_selector" class="custom-select" required>
+              <select id="wave-selector" class="custom-select" required>
                 <option value="">Select a Signal...</option>
                 <option value="sine">Sine Signal</option>
                 <option value="cos">Cosine Signal</option>
@@ -240,7 +247,7 @@
           <!-- Command Window -->
           <!-- <div class="col card-group command"> -->
             <div id="command-card" class="card border-info command-card">
-              <div class="card-header">Command Window</div>
+              <div id="command-header" class="card-header">Command Window</div>
               <div class="card-body">
                 <div class="table-responsive">
                   <table id="command-table" class="table-sm table-borderless">
@@ -301,22 +308,6 @@
                   <table id="code-table" class="table table-sm table-hover">
                     <col style="width: 1px; background-color: #C0C0C0;"></col>
                     <tbody></tbody>
-                  <!--  <tbody>
-                      <tr><td></td><td></td></tr>
-                      <tr><td></td><td></td></tr>
-                      <tr><td></td><td></td></tr>
-                      <tr><td></td><td></td></tr>
-                      <tr><td></td><td></td></tr>
-                      <tr><td></td><td></td></tr>
-                      <tr><td></td><td></td></tr>
-                      <tr><td></td><td></td></tr>
-                      <tr><td></td><td></td></tr>
-                      <tr><td></td><td></td></tr>
-                      <tr><td></td><td></td></tr>
-                      <tr><td></td><td></td></tr>
-                      <tr><td></td><td></td></tr>
-                      <tr><td></td><td></td></tr>
-                    </tbody>  -->
                   </table>
                 </div>
               </div>
@@ -356,16 +347,15 @@
 
         </div>
 
+        <!-- Row 2 -->
+        <div id="row2" class="row" style="height: 40px;"></div>
+
       </div>
       <!-- End of Row 1 -->
-
-      <!-- Row 2 -->
-      <div id="row2" class="row" style="height: 40px;"></div>
 
     </div>
 
 <script src="js/impulse.js"></script>
-
 <script src="js/ramp.js"></script>
 <script src="js/step.js"></script>
 <script src="js/sine.js"></script>
