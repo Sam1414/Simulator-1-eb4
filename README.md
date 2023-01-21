@@ -1,4 +1,4 @@
-## Introduction (Round 0)
+## Introduction
 
 <b>Discipline | <b>Electronics & Communication Engineering
 :--|:--|
@@ -16,34 +16,3 @@ In this experiment we will write a MATLAB code to generate the various basic sig
 <h5> Target Audience : </h5>
 
 This experiment is useful for the students as well as the faculties who are involved in teaching-learning process of the course in Digital Signal Processing.
-
-<h5> Course Alignment : </h5>
-
-Bachelor of Technology
-
-<h5> Universities Mapped : </h5>
-
-Dr. A.P.J. Abdul Kalam Technical University, Uttar Pradesh, Lucknow
-
-<b>Name of Developer | <b> Dr. Satish Kumar Singh
-:--|:--|
-<b> Institute | <b> Bundelkhand Institute of Engineering and Technology, Jhansi
-<b> Email id|     <b> satishsingh.in@gmail.com
-<b> Department | Electronics & Communication Engineering
-
-#### Mentor Details
-
-<b>Mentored by | <b> Praveen Kumar Chakravarti
-:--|:--|
-<b> Institute | <b> Meerut Institute of Engineering and Technology, Meerut
-<b> Email id|     <b> praveen.chakravarti@gmail.com
-<b> Department | Electronics and Communication Engineering
-
-#### Contributors List
-
-SrNo | Name | Faculty or Student | Department| Institute | Email id
-:--|:--|:--|:--|:--|:--|
-1 | Shubham Singh | Student | Electronics & Communication | BIET, Jhansi |singhshubham1216@gmail.com
-2 | Mukesh Bharti | Student | Computer Science | BIET, Jhansi |mukeshbharti8853@gmail.com
-3 | Samarth Agarwal | Student | Computer Science | BIET, Jhansi |samarthagarwal1414@gmail.com
-4 | Nitish Kumar | Student | Computer Science | BIET, Jhansi |nitish.129g@gmail.com
